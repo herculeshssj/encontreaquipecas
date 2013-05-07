@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/acesso.xhtml">
+
+	<ui:define name="titulo">
+		<h3>Autenticação</h3>
+	</ui:define>
+
+	<ui:define name="conteudo">
+ 
+            <form action="j_spring_security_check" method="post">
+            
+                <h:panelGrid columns="6" cellpadding="5" style="text-align: left">
+                    <h:outputLabel for="j_username" value="Login:" />
+                    <p:inputText id="j_username"/>
+                    
+                    <h:outputLabel for="j_password" value="Senha:" />
+                    <p:password id="j_password"/>
+                                        
+                    <h:commandButton title="Entrar no sistema" image="/resources/images/entrar.png"/>
+                    <h:outputText />
+                    
+                </h:panelGrid>
+            </form>
+            <h:form>
+            	<h:panelGrid columns="6" cellpadding="5" style="text-align: center">
+                    
+                    <h:inputHidden />
+                    <h:commandLink value="Efetuar registro" action="efetuarRegistro" />
+                    
+                    <h:inputHidden />
+                    <h:commandLink value="Recuperar senha" action="recuperarSenha"/>
+                    
+                    <h:inputHidden />
+                    <h:inputHidden />
+                    
+                </h:panelGrid>            
+            </h:form>
+     
+	</ui:define>
+	
+</ui:composition>
+</html>

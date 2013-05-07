@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	
+		<!-- Informações de conexão com a base de dados -->		
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+
+		<!-- Informações para log e debug do sistema -->
+		<property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+			
+		<!-- Entidades mapeadas -->
+		<mapping class="br.com.hslife.orcamento.entity.Auditoria"/>
+		<mapping class="br.com.hslife.orcamento.entity.AuditoriaDados"/>
+		<mapping class="br.com.hslife.orcamento.entity.Usuario"/>
+		
+	</session-factory>
+</hibernate-configuration>
