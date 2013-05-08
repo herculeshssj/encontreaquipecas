@@ -44,3 +44,5 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+insert into usuario (ativo, dataCriacao, login, nome, senha, tipoUsuario, email) values (true, '2013-01-01', 'admin', 'Administrador do Sistema', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'ROLE_ADMIN', 'contato@hslife.com.br');
+
