@@ -11,7 +11,7 @@
 	
 	<factory>
         <exception-handler-factory>
-            br.com.hslife.orcamento.exception.CustomExceptionHandlerFactory
+            br.com.hslife.encontreaquipecas.exception.CustomExceptionHandlerFactory
         </exception-handler-factory>
 	</factory>
 

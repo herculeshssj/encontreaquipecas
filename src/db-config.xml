@@ -12,9 +12,9 @@
         <property name="hibernate.format_sql">true</property>
 			
 		<!-- Entidades mapeadas -->
-		<mapping class="br.com.hslife.orcamento.entity.Auditoria"/>
-		<mapping class="br.com.hslife.orcamento.entity.AuditoriaDados"/>
-		<mapping class="br.com.hslife.orcamento.entity.Usuario"/>
+		<mapping class="br.com.hslife.encontreaquipecas.entity.Auditoria"/>
+		<mapping class="br.com.hslife.encontreaquipecas.entity.AuditoriaDados"/>
+		<mapping class="br.com.hslife.encontreaquipecas.entity.Usuario"/>
 		
 	</session-factory>
 </hibernate-configuration>
