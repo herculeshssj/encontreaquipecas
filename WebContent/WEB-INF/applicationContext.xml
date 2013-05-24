@@ -16,7 +16,7 @@
 						http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 						
 	<!-- General -->
-	<context:component-scan base-package="br.com.hslife.orcamento" />
+	<context:component-scan base-package="br.com.hslife.encontreaquipecas" />
 	
 	<context:annotation-config/>
 	
