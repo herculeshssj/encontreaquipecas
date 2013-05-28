@@ -14,6 +14,10 @@
 		<!-- Entidades mapeadas -->
 		<mapping class="br.com.hslife.encontreaquipecas.entity.Auditoria"/>
 		<mapping class="br.com.hslife.encontreaquipecas.entity.AuditoriaDados"/>
+		<mapping class="br.com.hslife.encontreaquipecas.entity.Consumidor"/>
+		<mapping class="br.com.hslife.encontreaquipecas.entity.Endereco"/>
+		<mapping class="br.com.hslife.encontreaquipecas.entity.Loja"/>
+		<mapping class="br.com.hslife.encontreaquipecas.entity.Telefone"/>
 		<mapping class="br.com.hslife.encontreaquipecas.entity.Usuario"/>
 		
 	</session-factory>

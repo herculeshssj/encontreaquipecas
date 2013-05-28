@@ -9,10 +9,14 @@ import org.springframework.stereotype.Service;
 
 import br.com.hslife.encontreaquipecas.component.EmailComponent;
 import br.com.hslife.encontreaquipecas.component.UsuarioComponent;
+import br.com.hslife.encontreaquipecas.entity.Consumidor;
+import br.com.hslife.encontreaquipecas.entity.Loja;
 import br.com.hslife.encontreaquipecas.entity.Usuario;
 import br.com.hslife.encontreaquipecas.enumeration.TipoUsuario;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
 import br.com.hslife.encontreaquipecas.facade.IUsuario;
+import br.com.hslife.encontreaquipecas.repository.ConsumidorRepository;
+import br.com.hslife.encontreaquipecas.repository.LojaRepository;
 import br.com.hslife.encontreaquipecas.repository.UsuarioRepository;
 import br.com.hslife.encontreaquipecas.util.Util;
 
@@ -27,6 +31,12 @@ public class UsuarioService implements IUsuario {
 	
 	@Autowired
 	private EmailComponent emailComponent;
+	
+	@Autowired
+	private LojaRepository lojaRepository;
+	
+	@Autowired
+	private ConsumidorRepository consumidorRepository;
 
 	public UsuarioRepository getRepository() {
 		return repository;
@@ -46,6 +56,14 @@ public class UsuarioService implements IUsuario {
 	
 	public void setEmailComponent(EmailComponent emailComponent) {
 		this.emailComponent = emailComponent;
+	}
+
+	public void setLojaRepository(LojaRepository lojaRepository) {
+		this.lojaRepository = lojaRepository;
+	}
+
+	public void setConsumidorRepository(ConsumidorRepository consumidorRepository) {
+		this.consumidorRepository = consumidorRepository;
 	}
 
 	@Override
@@ -142,6 +160,18 @@ public class UsuarioService implements IUsuario {
 		} else {
 			throw new BusinessException("E-Mail informado não confere com o cadastrado!");
 		}		
+	}
+	
+	@Override
+	public void efetuarRegistro(Loja loja) throws BusinessException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void efetuarRegistro(Consumidor consumidor) throws BusinessException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override

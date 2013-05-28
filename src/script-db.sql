@@ -36,7 +36,7 @@ CREATE TABLE `usuario` (
   `ativo` tinyint(1) DEFAULT NULL,
   `dataCriacao` datetime DEFAULT NULL,
   `login` varchar(50) NOT NULL,
-  `nome` varchar(100) NOT NULL,
+  `nome` varchar(200) NOT NULL,
   `senha` varchar(40) NOT NULL,
   `tipoUsuario` varchar(10) DEFAULT NULL,
   `email` varchar(40) NOT NULL,
@@ -48,7 +48,7 @@ create table endereco(
 	id bigint(20) not null auto_increment,
 	tipoLogradouro varchar(70) not null,
 	logradouro varchar(200) not null,
-	complemento varchar(100) not null, 
+	complemento varchar(100) null, 
 	numero varchar(10) null,
 	bairro varchar(50) not null,
 	cidade varchar(100) not null, 
@@ -69,7 +69,6 @@ create table loja(
 	id bigint(20) not null auto_increment,
 	idUsuario bigint not null,
 	idEndereco bigint not null,	
-	nome varchar(200) not null,
 	contato varchar(200) not null,
 	cnpj varchar(14) not null, 
 	inscricaoEstadual varchar(10) null,
@@ -92,20 +91,20 @@ alter table consumidor add constraint fk_usuario_consumidor foreign key usuario 
 alter table consumidor add constraint fk_endereco_consumidor foreign key endereco (idEndereco) references endereco (id);
 
 create table loja_telefone(
-	idLoja bigint(20) not null,
-	idTelefone bigint(20) not null
+	loja_id bigint(20) not null,
+	telefones_id bigint(20) not null
 );
 
-alter table loja_telefone add constraint fk_loja_loja_telefone foreign key loja (idLoja) references loja (id);
-alter table loja_telefone add constraint fk_telefone_loja_telefone foreign key telefone (idTelefone) references telefone (id);
+alter table loja_telefone add constraint fk_loja_loja_telefone foreign key loja (loja_id) references loja (id);
+alter table loja_telefone add constraint fk_telefone_loja_telefone foreign key telefone (telefones_id) references telefone (id);
 
 create table consumidor_telefone(
-	idConsumidor bigint(20) not null,
-	idTelefone bigint(20) not null
+	consumidor_id bigint(20) not null,
+	telefones_id bigint(20) not null
 );
 
-alter table consumidor_telefone add constraint fk_consumidor_consumidor_telefone foreign key consumidor (idConsumidor) references consumidor (id);
-alter table consumidor_telefone add constraint fk_telefone_consumidor_telefone foreign key telefone (idTelefone) references telefone (id);
+alter table consumidor_telefone add constraint fk_consumidor_consumidor_telefone foreign key consumidor (consumidor_id) references consumidor (id);
+alter table consumidor_telefone add constraint fk_telefone_consumidor_telefone foreign key telefone (telefones_id) references telefone (id);
 
 create table banner(
 	id bigint(20) not null auto_increment,

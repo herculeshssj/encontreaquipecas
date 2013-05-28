@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/acesso.xhtml">
+
+	<ui:param name="managedBean" value="#{efetuarRegistroMB}" />
+
+	<ui:define name="titulo">
+		<h3>Registro de Usuário - Passo 2</h3>
+	</ui:define>
+
+	<ui:define name="conteudo">
+ 
+            <h:form>
+            	
+            	<p:messages />
+            	
+            	<h:panelGrid columns="2" cellpadding="5" rendered="#{managedBean.perfilUsuario == 'LOJA'}">
+            	
+            		Nome:
+	            	<p:inputText />
+	            	
+	            	CNPJ:
+	            	<p:inputText />
+	            	
+	            	Inscrição estadual:
+	            	<p:inputText />
+	            	
+	            	Site:
+	            	<p:inputText />
+	            	
+	            	Contato:
+	            	<p:inputText />
+	            	
+	            	Área de interesse
+	            	<p:selectOneRadio layout="pageDirection">
+						<f:selectItem itemLabel="Divulgação de produtos"/>
+						<f:selectItem itemLabel="Banner"/>
+					</p:selectOneRadio>
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5">
+            	
+	            	Tipo de logradouro:
+	            	<p:inputText />
+	            	
+	            	Logradouro:
+	            	<p:inputText />
+	            	
+	            	Número:
+	            	<p:inputText />
+	            	
+	            	Complemento:
+	            	<p:inputText />
+	            	
+	            	Bairro:
+	            	<p:inputText />
+	            	
+	            	Cidade:
+	            	<p:inputText />
+	            	
+	            	Estado:
+	            	<p:inputText />
+	            	
+	            	CEP:
+	            	<p:inputText />
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5">
+            	
+                    * Informe o e-mail:
+                    <p:inputText id="txtEmail" value="#{managedBean.usuario.email}" size="30"/>
+
+                    * Informe o login desejado:
+                    <p:inputText id="txtLogin" value="#{managedBean.usuario.login}" />
+                    
+                </h:panelGrid>
+                
+                <br/>
+                <h:commandLink title="Retornar" action="#{managedBean.efetuarRegistroPasso1}" immediate="true">
+     				<p:graphicImage value="/resources/images/retornar.png" />
+     			</h:commandLink>
+				&nbsp;&nbsp;&nbsp;
+     			<h:commandLink title="Avançar" action="#{managedBean.efetuarRegistroPasso3}">
+     				<p:graphicImage value="/resources/images/avancar.png" />
+     			</h:commandLink>            
+            </h:form>
+     
+	</ui:define>
+	
+</ui:composition>
+</html>

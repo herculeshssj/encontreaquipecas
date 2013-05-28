@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Encontre Aqui Peças</title>
+	<h:outputStylesheet name="style.css" library="styles" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+</h:head>
+
+<h:body class="single single-post postid-1 single-format-standard">
+
+	<div id="wrapper" class="hfeed">
+		<div id="header">
+			<div id="masthead">
+				<div id="branding">
+
+					<div id="site-title">
+						<h6><span>[mensagem / slogan]</span></h6>
+					</div>
+					<div id="site-description">
+						Seja bem vindo
+					</div>
+
+					<h:graphicImage name="header.jpg" library="images" width="940"
+						height="198" />
+
+				</div>
+				<!-- #branding -->
+
+				<div id="access">
+					<div class="skip-link screen-reader-text">
+						<a href="#content" title="Pular para o conteúdo">Pular para o
+							conteúdo</a>
+					</div>
+					<div class="menu">
+						<h:form id="frmMenu">
+							<ul>
+								<li class="page_item page-item-8"><a
+									href="#{request.contextPath}/home.faces">Home</a></li>
+									
+								<li class="page_item page-item-8"><a
+									href="#{request.contextPath}/sobre.faces">Sobre a empresa</a></li>
+
+								<li class="page_item page-item-8"><a
+									href="#{request.contextPath}/produto.faces">Produtos</a></li>
+								
+								<li class="page_item page-item-8"><a
+									href="#{request.contextPath}/dica.faces">Dicas</a></li>
+									
+								<li class="page_item page-item-8"><a
+									href="#{request.contextPath}/faleconosco.faces">Fale conosco</a></li>
+
+								<li class="page_item page-item-8"><a
+									href="#{request.contextPath}/login.faces" target="_blank">Entrar</a>
+								</li>
+							</ul>
+						</h:form>
+					</div>
+				</div>
+				<!-- #access -->
+			</div>
+			<!-- #masthead -->
+
+		</div>
+		<!-- #header -->
+
+		<div id="main">
+
+			<div id="container">
+				<div id="content">
+
+					<ui:insert name="titulo">
+						<h3>Encontre Aqui Peças</h3>
+					</ui:insert>
+					<ui:insert name="conteudo">
+						<p>Seja bem vindo</p>
+					</ui:insert>
+
+				</div>
+				<!-- #content -->
+
+			</div>
+			<!-- #container -->
+
+
+			<!-- #primary .widget-area -->
+
+		</div>
+		<!-- #main -->
+
+		<div id="footer">
+			<div id="colophon">
+
+				<div id="site-info">
+					Copyright &copy; 2013 - Todos os direitos reservados a <a
+						href="http://hslife.com.br/" target="_blank">HSlife Serviços
+						de TI</a>. <br /> <i><a href="http://wordpress.org/"
+						target="_blank" title="Plataforma de Publicação Pessoal Semântica"
+						rel="generator">Orgulhosamente criado a partir de um tema
+							WordPress.</a></i>
+				</div>
+
+				<div id="site-generator">
+					<a href="#">Versão 1.0</a><br /> <a
+						href="#{request.contextPath}/pages/menu/sitemap.faces">Mapa do site</a>
+				</div>
+				<!-- #site-generator -->
+
+			</div>
+			<!-- #colophon -->
+		</div>
+		<!-- #footer -->
+
+	</div>
+	<!-- #wrapper -->
+
+</h:body>
+
+</html>
