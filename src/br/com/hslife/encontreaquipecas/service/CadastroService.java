@@ -1,28 +1,36 @@
 package br.com.hslife.encontreaquipecas.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.hslife.encontreaquipecas.component.EmailComponent;
-import br.com.hslife.encontreaquipecas.component.UsuarioComponent;
 import br.com.hslife.encontreaquipecas.entity.Consumidor;
 import br.com.hslife.encontreaquipecas.entity.Loja;
-import br.com.hslife.encontreaquipecas.entity.Usuario;
-import br.com.hslife.encontreaquipecas.enumeration.TipoUsuario;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
-import br.com.hslife.encontreaquipecas.facade.IUsuario;
-import br.com.hslife.encontreaquipecas.repository.ConsumidorRepository;
-import br.com.hslife.encontreaquipecas.repository.LojaRepository;
-import br.com.hslife.encontreaquipecas.repository.UsuarioRepository;
-import br.com.hslife.encontreaquipecas.util.Util;
+import br.com.hslife.encontreaquipecas.facade.ICadastro;
 
-@Service("usuarioService")
-public class UsuarioService implements IUsuario {
+@Service("cadastroService")
+public class CadastroService implements ICadastro {
 	
+	@Override
+	public void atualizarCadastro(Consumidor consumidor) throws BusinessException {
+		
+	}
+	
+	@Override
+	public void atualizarCadastro(Loja loja) throws BusinessException {
+		
+	}
+	
+	@Override
+	public Consumidor buscarConsumidorPorLogin(String loginUsuario) throws BusinessException {
+		return null;
+	}
+	
+	@Override
+	public Loja buscarLojaPorLogin(String loginUsuario) throws BusinessException {
+		return null;
+	}
+	
+	/*
 	@Autowired
 	private UsuarioRepository repository;
 	
@@ -171,7 +179,6 @@ public class UsuarioService implements IUsuario {
 		String senha = hash.substring(0, 8);
 		System.out.println("Senha gerada para usuário " + loja.getUsuario().getLogin() + ": " + senha);
 				
-		loja.getUsuario().setTipoUsuario(TipoUsuario.ROLE_STORE);
 		// Cadastra o usuário do consumidor
 		this.cadastrar(loja.getUsuario(), senha, senha);
 			
@@ -223,4 +230,5 @@ public class UsuarioService implements IUsuario {
 	public Usuario buscarPorId(Long id) throws BusinessException {
 		return getRepository().findById(id);
 	}
+	*/
 }

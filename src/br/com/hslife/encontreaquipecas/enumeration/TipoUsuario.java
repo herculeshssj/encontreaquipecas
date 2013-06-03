@@ -1,7 +1,7 @@
 package br.com.hslife.encontreaquipecas.enumeration;
 
 public enum TipoUsuario {
-	ROLE_ADMIN("ROLE_ADMIN"), ROLE_USER("ROLE_USER");
+	ROLE_ADMIN("ROLE_ADMIN"), ROLE_USER("ROLE_USER"), ROLE_STORE("ROLE_STORE");
 	
 	private String descricao;
 	

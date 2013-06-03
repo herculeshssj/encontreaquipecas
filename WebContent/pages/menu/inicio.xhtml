@@ -18,11 +18,13 @@
 		
 		<h:form id="frmMenuPrincipal">
 			
-			<h:panelGrid columns="2" width="100%" style="text-align: center">
+			<h:panelGrid columns="3" width="100%" style="text-align: center">
 			
+				<h:commandButton action="#{atualizarCadastroMB.startUp}" image="/resources/images/anotacoes.png" title="Atualizar Dados Cadastrais"/>
 				<h:commandButton action="#{auditoriaMB.startUp}" image="/resources/images/auditoria.png" title="Auditoria do Sistema"/>
 				<h:commandButton action="#{usuarioMB.startUp}" image="/resources/images/usuarios.png" title="Usuários"/>				
 				
+				<h:outputText value="Atualizar Dados Cadastrais"/>
 				<h:outputText value="Auditoria do Sistema"/>
 				<h:outputText value="Usuários"/>
 					
