@@ -12,7 +12,7 @@
 	<ui:param name="managedBean" value="#{efetuarRegistroMB}" />
 
 	<ui:define name="titulo">
-		<h3>Registro de Usuário - Passo 2</h3>
+		<h3>Registro de Usuário - Dados cadastrais</h3>
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -23,64 +23,85 @@
             	
             	<h:panelGrid columns="2" cellpadding="5" rendered="#{managedBean.perfilUsuario == 'LOJA'}">
             	
-            		Nome:
-	            	<p:inputText />
+            		* Nome:
+	            	<p:inputText value="#{managedBean.usuario.nome}"/>
 	            	
-	            	CNPJ:
-	            	<p:inputText />
+	            	* CNPJ:
+	            	<p:inputText value="#{managedBean.loja.cnpj}"/>
 	            	
-	            	Inscrição estadual:
-	            	<p:inputText />
+	            	* Inscrição estadual:
+	            	<p:inputText value="#{managedBean.loja.inscricaoEstadual}"/>
 	            	
-	            	Site:
-	            	<p:inputText />
+	            	* Site:
+	            	<p:inputText value="#{managedBean.loja.site}"/>
 	            	
-	            	Contato:
-	            	<p:inputText />
+	            	* Contato:
+	            	<p:inputText value="#{managedBean.loja.contato}"/>
 	            	
-	            	Área de interesse
-	            	<p:selectOneRadio layout="pageDirection">
-						<f:selectItem itemLabel="Divulgação de produtos"/>
-						<f:selectItem itemLabel="Banner"/>
+	            	* Área de interesse:
+	            	<p:selectOneRadio value="#{managedBean.loja.areaInteresse}" layout="pageDirection">
+						<f:selectItems value="#{managedBean.listaAreaInteresse}"/>
 					</p:selectOneRadio>
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5" rendered="#{managedBean.perfilUsuario == 'CONSUMIDOR'}">
+            	
+            		* Nome:
+	            	<p:inputText value="#{managedBean.usuario.nome}"/>	            	
                     
                 </h:panelGrid>
                 
                 <h:panelGrid columns="2" cellpadding="5">
             	
-	            	Tipo de logradouro:
-	            	<p:inputText />
+	            	* Tipo de logradouro:
+	            	<p:inputText value="#{managedBean.endereco.tipoLogradouro}"/>
 	            	
-	            	Logradouro:
-	            	<p:inputText />
+	            	* Logradouro:
+	            	<p:inputText value="#{managedBean.endereco.logradouro}"/>
 	            	
-	            	Número:
-	            	<p:inputText />
+	            	* Número:
+	            	<p:inputText value="#{managedBean.endereco.numero}"/>
 	            	
 	            	Complemento:
-	            	<p:inputText />
+	            	<p:inputText value="#{managedBean.endereco.complemento}"/>
 	            	
-	            	Bairro:
-	            	<p:inputText />
+	            	* Bairro:
+	            	<p:inputText value="#{managedBean.endereco.bairro}"/>
 	            	
-	            	Cidade:
-	            	<p:inputText />
+	            	* Cidade:
+	            	<p:inputText value="#{managedBean.endereco.cidade}"/>
 	            	
-	            	Estado:
-	            	<p:inputText />
+	            	* Estado:
+	            	<p:inputText value="#{managedBean.endereco.estado}"/>
 	            	
-	            	CEP:
-	            	<p:inputText />
+	            	* CEP:
+	            	<p:inputText value="#{managedBean.endereco.cep}"/>
                     
                 </h:panelGrid>
                 
                 <h:panelGrid columns="2" cellpadding="5">
             	
                     * Informe o e-mail:
-                    <p:inputText id="txtEmail" value="#{managedBean.usuario.email}" size="30"/>
+                    <p:inputText value="#{managedBean.usuario.email}" size="30" required="true" requiredMessage="Informe o e-mail!"/>
 
                     * Informe o login desejado:
-                    <p:inputText id="txtLogin" value="#{managedBean.usuario.login}" />
+                    <p:inputText value="#{managedBean.usuario.login}"  required="true" requiredMessage="Informe o login!"/>
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5">
+            	
+                    * Tipo de telefone:
+	            	<p:selectOneRadio value="#{managedBean.telefone.tipoTelefone}">
+						<f:selectItems value="#{managedBean.listaTipoTelefone}"/>
+					</p:selectOneRadio>
+
+                    * DDD:
+                    <p:inputText value="#{managedBean.telefone.ddd}"/>
+                    
+                    * Número:
+                    <p:inputText value="#{managedBean.telefone.numero}"/>
                     
                 </h:panelGrid>
                 

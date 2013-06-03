@@ -28,7 +28,7 @@ public class Consumidor extends EntityPersistence {
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idEndereco")
 	private Endereco endereco;
 	

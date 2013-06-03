@@ -12,7 +12,7 @@
 	<ui:param name="managedBean" value="#{efetuarRegistroMB}" />
 
 	<ui:define name="titulo">
-		<h3>Registro de Usuário - Passo 3</h3>
+		<h3>Registro de Usuário - Confirmação dos dados</h3>
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -21,17 +21,91 @@
             	
             	<p:messages />
             	
-            	<h:panelGrid columns="3" cellpadding="5">
+            	<h:panelGrid columns="2" cellpadding="5" rendered="#{managedBean.perfilUsuario == 'LOJA'}">
             	
-            		              
+            		Nome:
+	            	<h:outputText value="#{managedBean.usuario.nome}"/>
+	            	
+	            	CNPJ:
+	            	<h:outputText value="#{managedBean.loja.cnpj}"/>
+	            	
+	            	Inscrição estadual:
+	            	<h:outputText value="#{managedBean.loja.inscricaoEstadual}"/>
+	            	
+	            	Site:
+	            	<h:outputText value="#{managedBean.loja.site}"/>
+	            	
+	            	Contato:
+	            	<h:outputText value="#{managedBean.loja.contato}"/>
+	            	
+	            	Área de interesse:
+	            	<h:outputText value="#{managedBean.loja.areaInteresse}"/>
+	            	
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5" rendered="#{managedBean.perfilUsuario == 'CONSUMIDOR'}">
+            	
+            		Nome:
+	            	<h:outputText value="#{managedBean.usuario.nome}"/>
+	            	
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5">
+            	
+	            	Tipo de logradouro:
+	            	<h:outputText value="#{managedBean.endereco.tipoLogradouro}"/>
+	            	
+	            	Logradouro:
+	            	<h:outputText value="#{managedBean.endereco.logradouro}"/>
+	            	
+	            	Número:
+	            	<h:outputText value="#{managedBean.endereco.numero}"/>
+	            	
+	            	Complemento:
+	            	<h:outputText value="#{managedBean.endereco.complemento}"/>
+	            	
+	            	Bairro:
+	            	<h:outputText value="#{managedBean.endereco.bairro}"/>
+	            	
+	            	Cidade:
+	            	<h:outputText value="#{managedBean.endereco.cidade}"/>
+	            	
+	            	Estado:
+	            	<h:outputText value="#{managedBean.endereco.estado}"/>
+	            	
+	            	CEP:
+	            	<h:outputText value="#{managedBean.endereco.cep}"/>
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5">
+            	
+                    E-Mail:
+                    <h:outputText value="#{managedBean.usuario.email}"/>
+
+                    Login:
+                    <h:outputText value="#{managedBean.usuario.login}"/>
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5">
+            	
+                    Tipo de telefone:
+                    <h:outputText value="#{managedBean.telefone.tipoTelefone}"/>
+	            	
+                    DDD:
+                    <h:outputText value="#{managedBean.telefone.ddd}"/>
+                    
+                    Número:
+                    <h:outputText value="#{managedBean.telefone.numero}"/>
                     
                 </h:panelGrid>
                 <br/>
-                <h:commandLink title="Retornar" action="login" immediate="true">
+                <h:commandLink title="Retornar" action="#{managedBean.retornarEfetuarRegistroPasso2}" immediate="true">
      				<p:graphicImage value="/resources/images/retornar.png" />
      			</h:commandLink>
 				&nbsp;&nbsp;&nbsp;
-     			<h:commandLink title="Avançar" action="#{managedBean.efetuarRegistroPasso2}">
+     			<h:commandLink title="Avançar" action="#{managedBean.efetuarRegistroPasso4}">
      				<p:graphicImage value="/resources/images/avancar.png" />
      			</h:commandLink>           
             </h:form>

@@ -49,7 +49,7 @@ public class Loja extends EntityPersistence {
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idEndereco")
 	private Endereco endereco;
 	
@@ -109,8 +109,8 @@ public class Loja extends EntityPersistence {
 			throw new BusinessException("Inscrição estadual deve ser menor que 14 caracteres!");
 		}
 		
-		if (this.site != null && this.site.length() > 14) {
-			throw new BusinessException("Site deve ser menor que 14 caracteres!");
+		if (this.site != null && this.site.length() > 100) {
+			throw new BusinessException("Site deve ser menor que 100 caracteres!");
 		}
 	}
 

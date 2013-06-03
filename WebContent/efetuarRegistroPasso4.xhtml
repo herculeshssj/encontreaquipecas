@@ -12,7 +12,7 @@
 	<ui:param name="managedBean" value="#{efetuarRegistroMB}" />
 
 	<ui:define name="titulo">
-		<h3>Registro de Usuário - Passo 4</h3>
+		<h3>Registro de Usuário - Registro concluído</h3>
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -21,19 +21,13 @@
             	
             	<p:messages />
             	
-            	<h:panelGrid columns="3" cellpadding="5">
+            	<h:panelGrid columns="2" cellpadding="5" style="text-align: center">
             	
-            		              
-                    
-                </h:panelGrid>
-                <br/>
-                <h:commandLink title="Retornar" action="login" immediate="true">
-     				<p:graphicImage value="/resources/images/retornar.png" />
-     			</h:commandLink>
-				&nbsp;&nbsp;&nbsp;
-     			<h:commandLink title="Avançar" action="#{managedBean.efetuarRegistroPasso2}">
-     				<p:graphicImage value="/resources/images/avancar.png" />
-     			</h:commandLink>           
+          			<h:commandLink value="Página inicial" title="Página inicial" action="home"/>
+     				<h:commandLink value="Página de login" title="Login no sistema" action="login"/>                    
+                
+                </h:panelGrid>                
+                           
             </h:form>
      
 	</ui:define>

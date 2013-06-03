@@ -109,7 +109,7 @@ public class Endereco extends EntityPersistence {
 		}
 		
 		if (this.estado.length() > 2) {
-			throw new BusinessException("Estado deve ser menor que 70 caracteres!");
+			throw new BusinessException("Estado deve ser menor que 2 caracteres!");
 		}
 		
 		if (this.cep == null || this.cep.trim().isEmpty()) {

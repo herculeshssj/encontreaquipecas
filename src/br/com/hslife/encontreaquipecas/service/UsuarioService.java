@@ -164,14 +164,35 @@ public class UsuarioService implements IUsuario {
 	
 	@Override
 	public void efetuarRegistro(Loja loja) throws BusinessException {
-		// TODO Auto-generated method stub
+		// Gera hash da data atual para extrair a senha
+		String hash = Util.MD5((new Date().toString()));
+						
+		// Extrai do hash a senha aleatória do usuário
+		String senha = hash.substring(0, 8);
+		System.out.println("Senha gerada para usuário " + loja.getUsuario().getLogin() + ": " + senha);
+				
+		// Cadastra o usuário do consumidor
+		this.cadastrar(loja.getUsuario(), senha, senha);
+			
+		// Salva o consumidor
+		lojaRepository.save(loja);
 		
 	}
 	
 	@Override
 	public void efetuarRegistro(Consumidor consumidor) throws BusinessException {
-		// TODO Auto-generated method stub
+		// Gera hash da data atual para extrair a senha
+		String hash = Util.MD5((new Date().toString()));
+				
+		// Extrai do hash a senha aleatória do usuário
+		String senha = hash.substring(0, 8);
+		System.out.println("Senha gerada para usuário " + consumidor.getUsuario().getLogin() + ": " + senha);
 		
+		// Cadastra o usuário do consumidor
+		this.cadastrar(consumidor.getUsuario(), senha, senha);
+		
+		// Salva o consumidor
+		consumidorRepository.save(consumidor);
 	}
 	
 	@Override
