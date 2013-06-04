@@ -7,7 +7,9 @@ import javax.faces.bean.SessionScoped;
 import br.com.hslife.encontreaquipecas.entity.Consumidor;
 import br.com.hslife.encontreaquipecas.entity.Loja;
 import br.com.hslife.encontreaquipecas.entity.Usuario;
+import br.com.hslife.encontreaquipecas.exception.BusinessException;
 import br.com.hslife.encontreaquipecas.facade.ICadastro;
+import br.com.hslife.encontreaquipecas.facade.IUsuario;
 
 @ManagedBean(name="atualizarCadastroMB")
 @SessionScoped
@@ -20,6 +22,9 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 
 	@ManagedProperty(name="service", value="#{cadastroService}")
 	private ICadastro service;
+	
+	@ManagedProperty(name="usuarioService", value="#{usuarioService}")
+	private IUsuario usuarioService;
 	
 	private Loja loja;
 	private Consumidor consumidor;
@@ -48,10 +53,20 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 	}
 	
 	public String find() {
-		return "";
+		try {
+			listEntity = usuarioService.buscarTodosPorLogin(loginUsuario);
+		} catch (BusinessException be) {
+			errorMessage(be.getMessage());
+		}
+		return "";		
 	}
 	
 	public String edit() {
+		try {			
+			return "/pages/Cadastro/formCadastro"; 
+		} catch (Exception be) {
+			errorMessage(be.getMessage());
+		}
 		return "";
 	}
 	
@@ -89,6 +104,14 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 
 	public void setLoginUsuario(String loginUsuario) {
 		this.loginUsuario = loginUsuario;
+	}
+
+	public IUsuario getUsuarioService() {
+		return usuarioService;
+	}
+
+	public void setUsuarioService(IUsuario usuarioService) {
+		this.usuarioService = usuarioService;
 	}
 	
 	/*

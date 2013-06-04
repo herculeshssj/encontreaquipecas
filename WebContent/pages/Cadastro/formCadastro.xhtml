@@ -17,27 +17,100 @@
 			<p:tab title="Dados do usuário">
 				<fieldset>					
 			
-					<h:panelGrid columns="4">
-			
-					</h:panelGrid>
-			
+					<h:panelGrid columns="2" cellpadding="5" >
+            	
+            		* Nome:
+	            	<p:inputText value=""/>
+	            	
+	            	* CNPJ:
+	            	<p:inputText value=""/>
+	            	
+	            	* Inscrição estadual:
+	            	<p:inputText value=""/>
+	            	
+	            	* Site:
+	            	<p:inputText value=""/>
+	            	
+	            	* Contato:
+	            	<p:inputText value=""/>
+	            	
+	            	* Área de interesse:
+	            	<p:selectOneRadio value="" layout="pageDirection">
+						<f:selectItem itemLabel="Banner"/>
+						<f:selectItem itemLabel="Produto"/>
+					</p:selectOneRadio>
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="5">
+            	
+            		* Nome:
+	            	<p:inputText value=""/>	            	
+                
+                    * Informe o e-mail:
+                    <p:inputText value="" size="30"/>
+                    
+                    * Informe a senha:
+                    <p:inputText value="" size="30"/>
+
+					* Confirme a senha:
+                    <p:inputText value="" size="30"/>
+
+                </h:panelGrid>
+            
 				</fieldset>				
 			</p:tab> 
 			<p:tab title="Endereço">
 				<fieldset>
 									
-					<h:panelGrid columns="4">
-			
-					</h:panelGrid>
+					<h:panelGrid columns="2" cellpadding="5">
+            	
+	            	* Tipo de logradouro:
+	            	<p:inputText value=""/>
+	            	
+	            	* Logradouro:
+	            	<p:inputText value=""/>
+	            	
+	            	* Número:
+	            	<p:inputText value=""/>
+	            	
+	            	Complemento:
+	            	<p:inputText value=""/>
+	            	
+	            	* Bairro:
+	            	<p:inputText value=""/>
+	            	
+	            	* Cidade:
+	            	<p:inputText value=""/>
+	            	
+	            	* Estado:
+	            	<p:inputText value=""/>
+	            	
+	            	* CEP:
+	            	<p:inputText value=""/>
+                    
+                </h:panelGrid>
 			
 				</fieldset>				
 			</p:tab>
 			<p:tab title="Telefone">
 				<fieldset>
 								
-					<h:panelGrid columns="4">
-			
-					</h:panelGrid>
+					<h:panelGrid columns="2" cellpadding="5">
+            	
+                    Tipo de telefone:
+	            	<p:selectOneRadio value="">
+						<f:selectItem itemLabel="RESIDENCIAL"/>
+						<f:selectItem itemLabel="COMERCIAL"/>
+					</p:selectOneRadio>
+
+                    DDD:
+                    <p:inputText value=""/>
+                    
+                    Número:
+                    <p:inputText value=""/>
+                    
+                </h:panelGrid>
 			
 				</fieldset>				
 			</p:tab>
