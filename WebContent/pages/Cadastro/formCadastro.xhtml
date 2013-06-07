@@ -17,38 +17,46 @@
 			<p:tab title="Dados do usuário">
 				<fieldset>					
 			
-					<h:panelGrid columns="2" cellpadding="5" >
+					<h:panelGrid columns="2" cellpadding="5" rendered="#{managedBean.perfilUsuario == 'LOJA'}">
             	
             		* Nome:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.usuario.nome}"/>
 	            	
 	            	* CNPJ:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.loja.cnpj}"/>
 	            	
 	            	* Inscrição estadual:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.loja.inscricaoEstadual}"/>
 	            	
 	            	* Site:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.loja.site}"/>
 	            	
 	            	* Contato:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.loja.contato}"/>
 	            	
 	            	* Área de interesse:
-	            	<p:selectOneRadio value="" layout="pageDirection">
-						<f:selectItem itemLabel="Banner"/>
-						<f:selectItem itemLabel="Produto"/>
+	            	<p:selectOneRadio value="#{managedBean.loja.areaInteresse}" layout="pageDirection">
+						<f:selectItems value="#{managedBean.listaAreaInteresse}"/>
 					</p:selectOneRadio>
+					
+					* Informe o e-mail:
+                    <p:inputText value="#{managedBean.usuario.email}" size="30"/>
+                    
+                    * Informe a senha:
+                    <p:inputText value="" size="30"/>
+
+					* Confirme a senha:
+                    <p:inputText value="" size="30"/>
                     
                 </h:panelGrid>
                 
-                <h:panelGrid columns="2" cellpadding="5">
+                <h:panelGrid columns="2" cellpadding="5" rendered="#{managedBean.perfilUsuario == 'CONSUMIDOR'}">
             	
             		* Nome:
-	            	<p:inputText value=""/>	            	
+	            	<p:inputText value="#{managedBean.usuario.nome}"/>	            	
                 
                     * Informe o e-mail:
-                    <p:inputText value="" size="30"/>
+                    <p:inputText value="#{managedBean.usuario.email}" size="30"/>
                     
                     * Informe a senha:
                     <p:inputText value="" size="30"/>
@@ -66,28 +74,28 @@
 					<h:panelGrid columns="2" cellpadding="5">
             	
 	            	* Tipo de logradouro:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.endereco.tipoLogradouro}"/>
 	            	
 	            	* Logradouro:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.endereco.logradouro}"/>
 	            	
 	            	* Número:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.endereco.numero}"/>
 	            	
 	            	Complemento:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.endereco.complemento}"/>
 	            	
 	            	* Bairro:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.endereco.bairro}"/>
 	            	
 	            	* Cidade:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.endereco.cidade}"/>
 	            	
 	            	* Estado:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.endereco.estado}"/>
 	            	
 	            	* CEP:
-	            	<p:inputText value=""/>
+	            	<p:inputText value="#{managedBean.endereco.cep}"/>
                     
                 </h:panelGrid>
 			

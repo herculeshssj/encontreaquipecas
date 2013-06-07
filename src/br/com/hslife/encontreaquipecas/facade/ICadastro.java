@@ -2,6 +2,7 @@ package br.com.hslife.encontreaquipecas.facade;
 
 import br.com.hslife.encontreaquipecas.entity.Consumidor;
 import br.com.hslife.encontreaquipecas.entity.Loja;
+import br.com.hslife.encontreaquipecas.entity.Usuario;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
 
 
@@ -14,4 +15,6 @@ public interface ICadastro {
 	public Loja buscarLojaPorLogin(String loginUsuario) throws BusinessException;
 	
 	public Consumidor buscarConsumidorPorLogin(String loginUsuario) throws BusinessException;
+	
+	public Usuario buscarUsuarioPorId(Long id) throws BusinessException;
 }

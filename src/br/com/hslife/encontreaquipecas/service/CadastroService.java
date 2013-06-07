@@ -1,15 +1,46 @@
 package br.com.hslife.encontreaquipecas.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.hslife.encontreaquipecas.entity.Consumidor;
 import br.com.hslife.encontreaquipecas.entity.Loja;
+import br.com.hslife.encontreaquipecas.entity.Usuario;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
 import br.com.hslife.encontreaquipecas.facade.ICadastro;
+import br.com.hslife.encontreaquipecas.repository.ConsumidorRepository;
+import br.com.hslife.encontreaquipecas.repository.LojaRepository;
+import br.com.hslife.encontreaquipecas.repository.UsuarioRepository;
 
 @Service("cadastroService")
 public class CadastroService implements ICadastro {
 	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private LojaRepository lojaRepository;
+	
+	@Autowired
+	private ConsumidorRepository consumidorRepository;	
+	
+	public void setLojaRepository(LojaRepository lojaRepository) {
+		this.lojaRepository = lojaRepository;
+	}
+
+	public void setConsumidorRepository(ConsumidorRepository consumidorRepository) {
+		this.consumidorRepository = consumidorRepository;
+	}
+	
+	public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
+		this.usuarioRepository = usuarioRepository;
+	}
+
+	@Override
+	public Usuario buscarUsuarioPorId(Long id) throws BusinessException {
+		return usuarioRepository.findById(id);
+	}
+
 	@Override
 	public void atualizarCadastro(Consumidor consumidor) throws BusinessException {
 		
@@ -22,12 +53,12 @@ public class CadastroService implements ICadastro {
 	
 	@Override
 	public Consumidor buscarConsumidorPorLogin(String loginUsuario) throws BusinessException {
-		return null;
+		return consumidorRepository.findConsumidorByLogin(loginUsuario);
 	}
 	
 	@Override
 	public Loja buscarLojaPorLogin(String loginUsuario) throws BusinessException {
-		return null;
+		return lojaRepository.findLojaByLogin(loginUsuario);
 	}
 	
 	/*

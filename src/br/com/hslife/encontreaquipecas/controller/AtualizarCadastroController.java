@@ -1,12 +1,19 @@
 package br.com.hslife.encontreaquipecas.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 import br.com.hslife.encontreaquipecas.entity.Consumidor;
+import br.com.hslife.encontreaquipecas.entity.Endereco;
 import br.com.hslife.encontreaquipecas.entity.Loja;
 import br.com.hslife.encontreaquipecas.entity.Usuario;
+import br.com.hslife.encontreaquipecas.enumeration.AreaInteresse;
+import br.com.hslife.encontreaquipecas.enumeration.TipoUsuario;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
 import br.com.hslife.encontreaquipecas.facade.ICadastro;
 import br.com.hslife.encontreaquipecas.facade.IUsuario;
@@ -28,8 +35,11 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 	
 	private Loja loja;
 	private Consumidor consumidor;
+	private Endereco endereco;
+	private Usuario usuario;
 	
 	private String loginUsuario;
+	private String perfilUsuario;
 	
 	public AtualizarCadastroController() {
 		super(new Usuario());
@@ -48,6 +58,23 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 		if (getUsuarioLogado().getLogin().equals("admin")) {
 			return "/pages/Cadastro/listCadastro";
 		} else {
+			try {
+				if (getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.ROLE_USER)) {
+					perfilUsuario = "CONSUMIDOR";
+					consumidor = getService().buscarConsumidorPorLogin(getUsuarioLogado().getLogin());
+					endereco = consumidor.getEndereco();
+					usuario = consumidor.getUsuario();
+				} else if (getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.ROLE_STORE)) {
+					perfilUsuario = "LOJA";
+					loja = getService().buscarLojaPorLogin(getUsuarioLogado().getLogin());
+					endereco = loja.getEndereco();
+					usuario = loja.getUsuario();
+				} else {
+					errorMessage("Opção inválida!");
+				}
+			} catch (BusinessException be) {
+				errorMessage(be.getMessage());
+			}
 			return "/pages/Cadastro/formCadastro";
 		}
 	}
@@ -62,7 +89,22 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 	}
 	
 	public String edit() {
-		try {			
+		try {
+			Usuario u = getService().buscarUsuarioPorId(idEntity);
+			if (u.getTipoUsuario().equals(TipoUsuario.ROLE_USER)) {
+				perfilUsuario = "CONSUMIDOR";
+				consumidor = getService().buscarConsumidorPorLogin(u.getLogin());
+				endereco = consumidor.getEndereco();
+				usuario = consumidor.getUsuario();
+			} else if (u.getTipoUsuario().equals(TipoUsuario.ROLE_STORE)) {
+				perfilUsuario = "LOJA";
+				loja = getService().buscarLojaPorLogin(u.getLogin());
+				endereco = loja.getEndereco();
+				usuario = loja.getUsuario();
+			} else {
+				errorMessage("Opção inválida!");
+				return "";
+			}
 			return "/pages/Cadastro/formCadastro"; 
 		} catch (Exception be) {
 			errorMessage(be.getMessage());
@@ -72,6 +114,13 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 	
 	public void save() {
 		
+	}
+	
+	public List<SelectItem> getListaAreaInteresse() {
+		List<SelectItem> listaSelectItem = new ArrayList<SelectItem>();
+		listaSelectItem.add(new SelectItem(AreaInteresse.BANNER, "Banner"));
+		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "Divulgação de produto"));
+		return listaSelectItem;
 	}
 	
 	public ICadastro getService() {
@@ -112,6 +161,30 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 
 	public void setUsuarioService(IUsuario usuarioService) {
 		this.usuarioService = usuarioService;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getPerfilUsuario() {
+		return perfilUsuario;
+	}
+
+	public void setPerfilUsuario(String perfilUsuario) {
+		this.perfilUsuario = perfilUsuario;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	/*
