@@ -5,18 +5,93 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-    xmlns:rich="http://richfaces.org/rich">
+    xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/site.xhtml">
 
 	<ui:define name="titulo">
-		<h3>Produtos</h3>
+		<h3>Pesquisa de produtos</h3>
 	</ui:define>
 
 	<ui:define name="conteudo">
 		
-		<h1>Página em construção</h1>
+		<h:form>
+		
+			<p:messages/>
+			
+			<center>
+				Fabricante:
+				<h:selectOneMenu>
+					<f:selectItem itemLabel="Selecione"/>
+				</h:selectOneMenu>
+				&nbsp;
+				Modelo:
+				<h:selectOneMenu>
+					<f:selectItem itemLabel="Selecione"/>
+				</h:selectOneMenu>
+				&nbsp;
+				Ano:
+				<h:selectOneMenu>
+					<f:selectItem itemLabel="Selecione"/>
+				</h:selectOneMenu>
+			</center>
+		
+		<br/>
+		
+		<p:dataTable id="tableListEntity" width="100%" rows="15" paginator="true">
+     			     			
+   				<p:column style="text-align: center; vertical-align: middle;">
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>						
+					<h:outputText value="Nome"/>
+ 				</p:column>
+ 				
+ 				<p:column style="text-align: center; vertical-align: middle;">
+					<f:facet name="header">
+						<h:outputText value="Descrição"/>
+					</f:facet>						
+					<h:outputText value="Descrição"/>
+ 				</p:column>	  						
+     			
+     			<p:column style="text-align: center; vertical-align: middle;">
+					<f:facet name="header">
+						<h:outputText value="Fabricante"/>
+					</f:facet>						
+					<h:outputText value="Fabricante"/>
+ 				</p:column>
+ 				
+ 				<p:column style="text-align: center; vertical-align: middle;">
+					<f:facet name="header">
+						<h:outputText value="Modelo"/>
+					</f:facet>						
+					<h:outputText value="Modelo"/>
+ 				</p:column>
+ 				
+ 				<p:column style="text-align: center; vertical-align: middle;">
+					<f:facet name="header">
+						<h:outputText value="Ano"/>
+					</f:facet>						
+					<h:outputText value="Ano"/>
+ 				</p:column>
+ 				
+ 				<p:column style="text-align: center; vertical-align: middle;">
+					<f:facet name="header">
+						<h:outputText value="Loja"/>
+					</f:facet>						
+					<h:outputText value="Loja"/>
+ 				</p:column>
+ 				
+ 				<p:column style="text-align: center; vertical-align: middle;">
+					<f:facet name="header">
+						<h:outputText value="Detalhes"/>
+					</f:facet>						
+					<h:commandButton value="Editar" image="/resources/images/pesquisar.png"/>
+ 				</p:column>
+     			
+     		</p:dataTable>
+		
+		</h:form>
 		
 	</ui:define>
 	
