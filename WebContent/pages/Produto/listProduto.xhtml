@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/listagem.xhtml">
+
+	<ui:param name="managedBean" value="#{produtoMB}" />
+
+	<ui:define name="pesquisa">
+		Nome:
+	    <p:inputText value="#{managedBean.nomeProduto}" />
+	</ui:define>
+
+	<ui:define name="colunas">
+		<p:column style="text-align: center; vertical-align: middle;">
+			<f:facet name="header">
+				<h:outputText value="Nome" />
+			</f:facet>
+			<h:outputText value="#{item.nome}" />
+		</p:column>
+
+		<p:column style="text-align: center; vertical-align: middle;">
+			<f:facet name="header">
+				<h:outputText value="Modelo" />
+			</f:facet>
+			<h:outputText value="#{item.modelo}" />
+		</p:column>
+
+		<p:column style="text-align: center; vertical-align: middle;">
+			<f:facet name="header">
+				<h:outputText value="Fabricante" />
+			</f:facet>
+			<h:outputText value="#{item.fabricante}" />
+		</p:column>
+
+		<p:column style="text-align: center; vertical-align: middle;">
+			<f:facet name="header">
+				<h:outputText value="Ano" />
+			</f:facet>
+			<h:outputText value="#{item.ano}"/>
+		</p:column>
+		
+	</ui:define>
+
+</ui:composition>
+</html>

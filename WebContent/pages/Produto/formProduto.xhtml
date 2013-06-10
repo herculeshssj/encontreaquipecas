@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/formulario.xhtml">
+
+	<ui:param name="managedBean" value="#{produtoMB}" />
+
+	<ui:define name="campos">
+
+		<h:panelGrid columns="2">
+		
+			Nome:
+			<p:inputText value="#{managedBean.entity.nome}"/>
+			
+			Descrição:
+			<p:inputText value="#{managedBean.entity.descricao}"/>
+			
+			Modelo:
+			<p:inputText value="#{managedBean.entity.modelo}"/>
+			
+			Fabricante:
+			<p:inputText value="#{managedBean.entity.fabricante}"/>
+			
+			Preço:
+			<p:inputText value="#{managedBean.entity.preco}"/>
+			
+			Ano:
+			<p:inputText value="#{managedBean.entity.ano}"/>
+			
+			Loja:
+			<h:selectOneMenu value="#{managedBean.entity.loja}" converter="entityConverter">
+				<f:selectItems value="#{managedBean.listaLoja}" var="item" itemLabel="#{item.label}" itemValue="#{item}"/>
+			</h:selectOneMenu>
+		
+		</h:panelGrid>
+
+	</ui:define>
+</ui:composition>
+</html>
