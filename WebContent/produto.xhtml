@@ -9,6 +9,8 @@
 
 <ui:composition template="/templates/site.xhtml">
 
+	<ui:param name="managedBean" value="#{buscaMB}" />
+
 	<ui:define name="titulo">
 		<h3>Pesquisa de produtos</h3>
 	</ui:define>
@@ -21,65 +23,70 @@
 			
 			<center>
 				Fabricante:
-				<h:selectOneMenu>
-					<f:selectItem itemLabel="Selecione"/>
+				<h:selectOneMenu value="#{managedBean.criterio.fabricante}">
+					<f:selectItem itemLabel="Todos"/>
+					<f:selectItems value="#{managedBean.listaFabricantes}"/>
 				</h:selectOneMenu>
 				&nbsp;
 				Modelo:
-				<h:selectOneMenu>
-					<f:selectItem itemLabel="Selecione"/>
+				<h:selectOneMenu value="#{managedBean.criterio.modelo}">
+					<f:selectItem itemLabel="Todos"/>
+					<f:selectItems value="#{managedBean.listaModelos}"/>
 				</h:selectOneMenu>
 				&nbsp;
 				Ano:
-				<h:selectOneMenu>
-					<f:selectItem itemLabel="Selecione"/>
+				<h:selectOneMenu value="#{managedBean.criterio.ano}">
+					<f:selectItem itemLabel="Todos"/>
+					<f:selectItems value="#{managedBean.listaAnos}"/>
 				</h:selectOneMenu>
+				&nbsp;
+				<h:commandButton value="Pesquisar" action="#{managedBean.find}" image="/resources/images/buscar.png"/>
 			</center>
 		
 		<br/>
 		
-		<p:dataTable id="tableListEntity" width="100%" rows="15" paginator="true">
+		<p:dataTable id="tableListEntity" value="#{managedBean.listEntity}" var="item" width="100%" rows="15" paginator="true">
      			     			
    				<p:column style="text-align: center; vertical-align: middle;">
 					<f:facet name="header">
 						<h:outputText value="Nome"/>
 					</f:facet>						
-					<h:outputText value="Nome"/>
+					<h:outputText value="#{item.nome}"/>
  				</p:column>
  				
  				<p:column style="text-align: center; vertical-align: middle;">
 					<f:facet name="header">
 						<h:outputText value="Descrição"/>
 					</f:facet>						
-					<h:outputText value="Descrição"/>
+					<h:outputText value="#{item.descricao}"/>
  				</p:column>	  						
      			
      			<p:column style="text-align: center; vertical-align: middle;">
 					<f:facet name="header">
 						<h:outputText value="Fabricante"/>
 					</f:facet>						
-					<h:outputText value="Fabricante"/>
+					<h:outputText value="#{item.fabricante}"/>
  				</p:column>
  				
  				<p:column style="text-align: center; vertical-align: middle;">
 					<f:facet name="header">
 						<h:outputText value="Modelo"/>
 					</f:facet>						
-					<h:outputText value="Modelo"/>
+					<h:outputText value="#{item.modelo}"/>
  				</p:column>
  				
  				<p:column style="text-align: center; vertical-align: middle;">
 					<f:facet name="header">
 						<h:outputText value="Ano"/>
 					</f:facet>						
-					<h:outputText value="Ano"/>
+					<h:outputText value="#{item.ano}"/>
  				</p:column>
  				
  				<p:column style="text-align: center; vertical-align: middle;">
 					<f:facet name="header">
 						<h:outputText value="Loja"/>
 					</f:facet>						
-					<h:outputText value="Loja"/>
+					<h:outputText value="#{item.loja.usuario.nome}"/>
  				</p:column>
  				
  				<p:column style="text-align: center; vertical-align: middle;">
