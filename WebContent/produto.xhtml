@@ -45,7 +45,7 @@
 		
 		<br/>
 		
-		<p:dataTable id="tableListEntity" value="#{managedBean.listEntity}" var="item" width="100%" rows="15" paginator="true">
+		<p:dataTable id="tableListEntity" value="#{managedBean.listEntity}" var="item" rows="15" paginator="true">
      			     			
    				<p:column style="text-align: center; vertical-align: middle;">
 					<f:facet name="header">
@@ -93,7 +93,9 @@
 					<f:facet name="header">
 						<h:outputText value="Detalhes"/>
 					</f:facet>						
-					<h:commandButton value="Editar" image="/resources/images/pesquisar.png"/>
+					<h:commandButton value="Editar" action="#{managedBean.verDetalhes}" image="/resources/images/pesquisar.png">
+						<f:setPropertyActionListener value="#{item.id}" target="#{managedBean.idEntity}" />
+					</h:commandButton>
  				</p:column>
      			
      		</p:dataTable>

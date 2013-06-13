@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import br.com.hslife.encontreaquipecas.entity.Produto;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
@@ -13,7 +13,7 @@ import br.com.hslife.encontreaquipecas.facade.IProduto;
 import br.com.hslife.encontreaquipecas.model.CriterioProduto;
 
 @ManagedBean(name="buscaMB")
-@RequestScoped
+@SessionScoped
 public class BuscaController extends AbstractController<Produto>{
 
 	/**
@@ -44,6 +44,19 @@ public class BuscaController extends AbstractController<Produto>{
 			errorMessage(be.getMessage());
 		}
 		return "";
+	}
+	
+	public String verDetalhes() {
+		try {
+			entity = getService().buscarPorID(idEntity);
+		} catch (BusinessException be) {
+			errorMessage(be.getMessage());
+		}
+		return "/detalhes";
+	}
+	
+	public String cancel() {
+		return "/produto";
 	}
 	
 	public List<String> getListaFabricantes() {
