@@ -366,6 +366,12 @@ a:hover {
 	display: block;
 	float: left;
 }
+#site-title img {
+	border-top: 0px solid #000;
+	border-bottom: 0px solid #000;
+	display: block;
+	float: left;
+}
 
 
 /* =Menu
