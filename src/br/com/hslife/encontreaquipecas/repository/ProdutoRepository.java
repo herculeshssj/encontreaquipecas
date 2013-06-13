@@ -43,7 +43,7 @@ public class ProdutoRepository extends AbstractCRUDRepository<Produto> {
 			criteria.add(Restrictions.eq("modelo", criterio.getModelo()));
 		}
 		if (criterio.getAno() != null && !criterio.getAno().trim().isEmpty()) {
-			criteria.add(Restrictions.eq("ano", criterio.getAno()));
+			criteria.add(Restrictions.eq("ano", Integer.parseInt(criterio.getAno())));
 		}
 		return criteria.list();
 	}
