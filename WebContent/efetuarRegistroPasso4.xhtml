@@ -21,6 +21,10 @@
             	
             	<p:messages />
             	
+            	<center><h:commandLink value="Clique aqui para gerar o boleto" action="#{managedBean.gerarBoleto}" rendered="#{managedBean.perfilUsuario == 'LOJA'}" /></center>
+            	
+            	<br/>
+            	
             	<h:panelGrid columns="2" cellpadding="5" style="text-align: center">
             	
           			<h:commandLink value="Página inicial" title="Página inicial" action="home"/>

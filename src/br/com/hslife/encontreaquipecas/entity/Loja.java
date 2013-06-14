@@ -106,8 +106,8 @@ public class Loja extends EntityPersistence {
 			throw new BusinessException("Informe a inscrição estadual!");
 		}
 		
-		if (this.inscricaoEstadual.length() > 14) {
-			throw new BusinessException("Inscrição estadual deve ser menor que 14 caracteres!");
+		if (this.inscricaoEstadual.length() > 10) {
+			throw new BusinessException("Inscrição estadual deve ser menor que 10 caracteres!");
 		}
 		
 		if (this.site != null && this.site.length() > 100) {

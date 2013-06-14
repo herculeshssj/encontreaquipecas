@@ -6,8 +6,18 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
+import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.Datas;
+import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
+import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
 import br.com.hslife.encontreaquipecas.entity.Consumidor;
 import br.com.hslife.encontreaquipecas.entity.Endereco;
 import br.com.hslife.encontreaquipecas.entity.Loja;
@@ -126,6 +136,79 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 	
 	public String finalizarRegistro() {
 		return "login";
+	}
+	
+	public void gerarBoleto() {
+		Datas datas = Datas.novasDatas()
+			    .comDocumento(1, 5, 2008)
+			    .comProcessamento(1, 5, 2008)
+			    .comVencimento(2, 5, 2008);  
+
+			Emissor emissor = Emissor.novoEmissor()  
+		            .comCedente("Fulano de Tal")  
+		            .comAgencia(1824).comDigitoAgencia('4')  
+		            .comContaCorrente(76000)  
+		            .comNumeroConvenio(1207113)  
+		            .comDigitoContaCorrente('5')  
+		            .comCarteira(18)  
+		            .comNossoNumero(9000206);  
+
+		        Sacado sacado = Sacado.novoSacado()  
+			    .comNome("Fulano da Silva")  
+		            .comCpf("111.222.333-12")  
+		            .comEndereco("Av dos testes, 111 apto 333")  
+		            .comBairro("Bairro Teste")  
+		            .comCep("01234-111")  
+		            .comCidade("São Paulo")  
+		            .comUf("SP");  
+
+		        Banco banco = new BancoDoBrasil();  
+
+		        // Setar o valor do boleto de acordo com o tipo de serviço
+		        double valorBoleto = 0.0;
+		        if (loja.getAreaInteresse().equals(AreaInteresse.BANNER)) {
+		        	valorBoleto = 50;
+		        } else {
+		        	valorBoleto = 150;
+		        }
+		        
+		        
+			Boleto boleto = Boleto.novoBoleto()  
+		            .comBanco(banco)  
+		            .comDatas(datas)  
+		            .comDescricoes("descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5")  
+		            .comEmissor(emissor)  
+		            .comSacado(sacado)		            
+		            .comValorBoleto(valorBoleto)  
+		            .comNumeroDoDocumento("1234")  
+		            .comInstrucoes("instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5")  
+		            .comLocaisDePagamento("local 1", "local 2");  
+
+		        GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);  
+
+		        // Para gerar um boleto em PDF  
+		        gerador.geraPDF("BancoDoBrasil.pdf");  
+
+		        // Para gerar um boleto em PNG  
+		        gerador.geraPNG("BancoDoBrasil.png");  
+
+		        // Para gerar um array de bytes a partir de um PDF  
+		        byte[] bPDF = gerador.geraPDF();  
+
+		        // Para gerar um array de bytes a partir de um PNG  
+		        byte[] bPNG = gerador.geraPNG();
+		
+			HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+			try {			
+				response.setContentType("application/pdf");
+				response.setHeader("Content-Disposition","attachment; filename=boleto.pdf");
+				response.setContentLength(bPDF.length);
+				ServletOutputStream output = response.getOutputStream();
+				output.write(bPDF, 0, bPDF.length);
+				FacesContext.getCurrentInstance().responseComplete();
+			} catch (Exception e) {
+				errorMessage(e.getMessage());
+			}
 	}
 	
 	public List<SelectItem> getListaAreaInteresse() {
