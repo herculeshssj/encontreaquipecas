@@ -62,7 +62,7 @@ public class BuscaController extends AbstractController<Produto>{
 	public List<String> getListaFabricantes() {
 		try {
 			return getService().buscarFabricantes();
-		} catch (BusinessException be) {
+		} catch (Exception be) {
 			errorMessage(be.getMessage());
 		}
 		return new ArrayList<String>();
@@ -71,7 +71,7 @@ public class BuscaController extends AbstractController<Produto>{
 	public List<String> getListaModelos() {
 		try {
 			return getService().buscarModelos();
-		} catch (BusinessException be) {
+		} catch (Exception be) {
 			errorMessage(be.getMessage());
 		}
 		return new ArrayList<String>();
@@ -80,7 +80,7 @@ public class BuscaController extends AbstractController<Produto>{
 	public List<String> getListaAnos() {
 		try {
 			return getService().buscarAnos();
-		} catch (BusinessException be) {
+		} catch (Exception be) {
 			errorMessage(be.getMessage());
 		}
 		return new ArrayList<String>();
