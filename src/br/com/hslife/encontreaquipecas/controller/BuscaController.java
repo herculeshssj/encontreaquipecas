@@ -40,6 +40,7 @@ public class BuscaController extends AbstractController<Produto>{
 	public String find() {
 		try {
 			listEntity = getService().buscarPorCriterioProduto(criterio);
+			return "/produto";
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
 		}

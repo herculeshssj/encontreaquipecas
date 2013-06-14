@@ -5,10 +5,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-    xmlns:rich="http://richfaces.org/rich">
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/site.xhtml">
+
+	<ui:param name="managedBean" value="#{buscaMB}" />
 
 	<ui:define name="titulo">
 		<h3>Dicas</h3>
@@ -16,7 +17,35 @@
 
 	<ui:define name="conteudo">
 		
-		<h1>Página em construção</h1>
+		<h:form>
+		
+			<p:messages/>
+			
+			<center>
+				Fabricante:
+				<h:selectOneMenu value="#{managedBean.criterio.fabricante}">
+					<f:selectItem itemLabel="Todos"/>
+					<f:selectItems value="#{managedBean.listaFabricantes}"/>
+				</h:selectOneMenu>
+				&nbsp;
+				Modelo:
+				<h:selectOneMenu value="#{managedBean.criterio.modelo}">
+					<f:selectItem itemLabel="Todos"/>
+					<f:selectItems value="#{managedBean.listaModelos}"/>
+				</h:selectOneMenu>
+				&nbsp;
+				Ano:
+				<h:selectOneMenu value="#{managedBean.criterio.ano}">
+					<f:selectItem itemLabel="Todos"/>
+					<f:selectItems value="#{managedBean.listaAnos}"/>
+				</h:selectOneMenu>
+				&nbsp;
+				<h:commandButton value="Pesquisar" action="#{managedBean.find}" image="/resources/images/buscar.png"/>
+			</center>
+		
+		<br/>
+		
+		</h:form>
 		
 	</ui:define>
 	
