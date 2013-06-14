@@ -42,12 +42,6 @@
 					* Informe o e-mail:
                     <p:inputText value="#{managedBean.usuario.email}" size="30"/>
                     
-                    * Informe a senha:
-                    <p:inputText value="" size="30"/>
-
-					* Confirme a senha:
-                    <p:inputText value="" size="30"/>
-                    
                 </h:panelGrid>
                 
                 <h:panelGrid columns="2" cellpadding="5" rendered="#{managedBean.perfilUsuario == 'CONSUMIDOR'}">
@@ -57,12 +51,6 @@
                 
                     * Informe o e-mail:
                     <p:inputText value="#{managedBean.usuario.email}" size="30"/>
-                    
-                    * Informe a senha:
-                    <p:inputText value="" size="30"/>
-
-					* Confirme a senha:
-                    <p:inputText value="" size="30"/>
 
                 </h:panelGrid>
             
@@ -101,27 +89,7 @@
 			
 				</fieldset>				
 			</p:tab>
-			<p:tab title="Telefone">
-				<fieldset>
-								
-					<h:panelGrid columns="2" cellpadding="5">
-            	
-                    Tipo de telefone:
-	            	<p:selectOneRadio value="">
-						<f:selectItem itemLabel="RESIDENCIAL"/>
-						<f:selectItem itemLabel="COMERCIAL"/>
-					</p:selectOneRadio>
-
-                    DDD:
-                    <p:inputText value=""/>
-                    
-                    Número:
-                    <p:inputText value=""/>
-                    
-                </h:panelGrid>
 			
-				</fieldset>				
-			</p:tab>
 		</p:tabView>
 		<br/>
 	</ui:define>

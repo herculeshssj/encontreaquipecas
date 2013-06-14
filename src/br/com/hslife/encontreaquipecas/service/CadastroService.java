@@ -43,12 +43,14 @@ public class CadastroService implements ICadastro {
 
 	@Override
 	public void atualizarCadastro(Consumidor consumidor) throws BusinessException {
-		
+		usuarioRepository.update(consumidor.getUsuario());
+		consumidorRepository.update(consumidor);
 	}
 	
 	@Override
 	public void atualizarCadastro(Loja loja) throws BusinessException {
-		
+		usuarioRepository.update(loja.getUsuario());
+		lojaRepository.update(loja);
 	}
 	
 	@Override

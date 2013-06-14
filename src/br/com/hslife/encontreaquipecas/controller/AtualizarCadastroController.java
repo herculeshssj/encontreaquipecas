@@ -113,7 +113,26 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 	}
 	
 	public void save() {
-		
+		try {
+			endereco.validate();			
+			if (perfilUsuario.equals("LOJA")) {
+				loja.setEndereco(endereco);
+				loja.setUsuario(usuario);
+				loja.validate();
+				getService().atualizarCadastro(loja);
+				infoMessage("Dados atualizados com sucesso!");
+			} else if (perfilUsuario.equals("CONSUMIDOR")) {
+				consumidor.setEndereco(endereco);
+				consumidor.setUsuario(usuario);
+				consumidor.validate();
+				getService().atualizarCadastro(consumidor);
+				infoMessage("Dados atualizados com sucesso!");
+			} else {
+				errorMessage("Opção inválida!");
+			}			
+		} catch (BusinessException be) {
+			errorMessage(be.getMessage());
+		}
 	}
 	
 	public List<SelectItem> getListaAreaInteresse() {
