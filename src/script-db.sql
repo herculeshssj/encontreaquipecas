@@ -110,9 +110,9 @@ create table banner(
 	id bigint(20) not null auto_increment,
 	idLoja bigint not null,
 	nomeArquivo varchar(255) not null,
-	caminho varchar(255) not null,
 	contentType varchar(50) not null, 
-	tamanho int not null,
+	tamanho bigint not null,
+	dados mediumblob,
 	primary key(id)
 );
 
