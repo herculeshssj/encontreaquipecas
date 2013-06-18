@@ -1,5 +1,7 @@
 package br.com.hslife.encontreaquipecas.repository;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -18,5 +20,11 @@ public class BannerRepository extends AbstractCRUDRepository<Banner> {
 		Criteria criteria = getSession().createCriteria(Banner.class);
 		criteria.add(Restrictions.eq("loja.id", loja.getId()));
 		return (Banner)criteria.uniqueResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Banner> findAll() {
+		Criteria criteria = getSession().createCriteria(Banner.class);
+		return criteria.list();
 	}
 }

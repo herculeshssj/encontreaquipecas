@@ -1,5 +1,7 @@
 package br.com.hslife.encontreaquipecas.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,7 @@ public class BannerService extends AbstractCRUDService<Banner> implements IBanne
 		return getRepository().findByLoja(loja);
 	}
 
-
+	public List<Banner> buscarTodos() throws BusinessException {
+		return getRepository().findAll();
+	}
 }

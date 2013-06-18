@@ -9,6 +9,8 @@ import javax.faces.bean.SessionScoped;
 
 import br.com.hslife.encontreaquipecas.entity.Loja;
 import br.com.hslife.encontreaquipecas.entity.Produto;
+import br.com.hslife.encontreaquipecas.enumeration.AreaInteresse;
+import br.com.hslife.encontreaquipecas.enumeration.TipoUsuario;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
 import br.com.hslife.encontreaquipecas.facade.ILoja;
 import br.com.hslife.encontreaquipecas.facade.IProduto;
@@ -34,6 +36,26 @@ public class ProdutoController extends AbstractCRUDController<Produto>{
 		super(new Produto());
 		
 		moduleTitle = "Produtos";
+	}
+	
+	@Override
+	public String startUp() {
+		try {
+			if (getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.ROLE_STORE)) {
+				Loja loja = lojaService.buscarPorLogin(getUsuarioLogado().getLogin());
+				if (loja.getAreaInteresse().equals(AreaInteresse.PRODUTO)) {
+					return super.startUp();
+				} else {
+					warnMessage("Você não está habilitado para utilizar este serviço!");
+					return "";
+				}
+			} else {
+				return super.startUp();
+			}
+		} catch (BusinessException e) {
+			errorMessage(e.getMessage());
+		}
+		return "";
 	}
 	
 	@Override

@@ -15,6 +15,7 @@ import org.richfaces.model.UploadedFile;
 
 import br.com.hslife.encontreaquipecas.entity.Banner;
 import br.com.hslife.encontreaquipecas.entity.Loja;
+import br.com.hslife.encontreaquipecas.enumeration.AreaInteresse;
 import br.com.hslife.encontreaquipecas.enumeration.TipoUsuario;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
 import br.com.hslife.encontreaquipecas.facade.IBanner;
@@ -43,11 +44,49 @@ public class BannerController extends AbstractCRUDController<Banner>{
 	}
 	
 	@Override
+	public String startUp() {
+		try {
+			if (getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.ROLE_STORE)) {
+				Loja loja = lojaService.buscarPorLogin(getUsuarioLogado().getLogin());
+				if (loja.getAreaInteresse().equals(AreaInteresse.BANNER)) {
+					this.find();
+					return super.startUp();
+				} else {
+					warnMessage("Você não está habilitado para utilizar este serviço!");
+					return "";
+				}
+			} else {
+				this.find();
+				return super.startUp();
+			}
+		} catch (BusinessException e) {
+			errorMessage(e.getMessage());
+		}
+		return "";
+	}
+	
+	@Override
+	public String find() {
+		try {
+			listEntity = new ArrayList<Banner>();
+			if (getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.ROLE_STORE)) {
+				Loja loja = lojaService.buscarPorLogin(getUsuarioLogado().getLogin());
+				listEntity.add(getService().buscarPorLoja(loja));
+			} else {
+				listEntity = getService().buscarTodos();
+			}
+		} catch (BusinessException be) {
+			errorMessage(be.getMessage());
+		}
+		return "";
+	}
+			
+	@Override
 	protected void initializeEntity() {
 		entity = new Banner();
 		listEntity = new ArrayList<Banner>();
 	}
-
+	
 	@Override
 	public String save() {
 		try {
