@@ -37,6 +37,12 @@
 			<h:outputText value="#{item.tamanho}" />
 		</p:column>
 
+		<p:column style="text-align: center; vertical-align: middle;">
+			<f:facet name="header">
+				<h:outputText value="Loja" />
+			</f:facet>
+			<h:outputText value="#{item.loja.usuario.nome}" />
+		</p:column>
 	</ui:define>
 
 </ui:composition>

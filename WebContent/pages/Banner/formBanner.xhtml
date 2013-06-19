@@ -20,7 +20,7 @@
 			<h:selectOneMenu value="#{managedBean.entity.loja}" converter="entityConverter" rendered="#{managedBean.usuarioLogado.login == 'admin'}">
 				<f:selectItems value="#{managedBean.listaLoja}" var="item" itemLabel="#{item.label}" itemValue="#{item}"/>
 			</h:selectOneMenu>
-			<h:outputText value=""/>
+			<h:outputText value="" rendered="#{managedBean.usuarioLogado.login == 'admin'}"/>
 						
 			Selecione o arquivo:
 			<rich:fileUpload id="txtArquivo" fileUploadListener="#{managedBean.carregarArquivo}" addLabel="Adicionar" clearAllLabel="Limpar todos" clearLabel="Limpar" deleteLabel="Apagar" doneLabel="Concluído" listHeight="100" maxFilesQuantity="1" serverErrorLabel="Erro no servidor" sizeExceededLabel="Tamanho excedido" uploadLabel="Carregar" />

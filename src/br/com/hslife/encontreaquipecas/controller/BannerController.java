@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.ImageIcon;
 
 import org.richfaces.event.FileUploadEvent;
 import org.richfaces.model.UploadedFile;
@@ -84,18 +85,22 @@ public class BannerController extends AbstractCRUDController<Banner>{
 	@Override
 	protected void initializeEntity() {
 		entity = new Banner();
-		listEntity = new ArrayList<Banner>();
 	}
 	
 	@Override
 	public String save() {
 		try {
-			if (getUsuarioLogado().getLogin().equals("admin")) {
-				return super.save();
+			ImageIcon temp = new ImageIcon(entity.getDados());
+			if (temp.getIconWidth() !=  468 && temp.getIconHeight() != 60) {
+				warnMessage("Banner deve ter as dimensões 468px x 60px!");
 			} else {
-				entity.setLoja(lojaService.buscarPorLogin(getUsuarioLogado().getLogin()));
-				return super.save();
-			}			
+				if (getUsuarioLogado().getLogin().equals("admin")) {
+					return super.save();
+				} else {
+					entity.setLoja(lojaService.buscarPorLogin(getUsuarioLogado().getLogin()));
+					return super.save();
+				}
+			}
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
 		}

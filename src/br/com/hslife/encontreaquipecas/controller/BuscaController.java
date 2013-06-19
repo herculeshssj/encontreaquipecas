@@ -1,5 +1,7 @@
 package br.com.hslife.encontreaquipecas.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +9,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import br.com.hslife.encontreaquipecas.entity.Banner;
 import br.com.hslife.encontreaquipecas.entity.Produto;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
+import br.com.hslife.encontreaquipecas.facade.IBanner;
 import br.com.hslife.encontreaquipecas.facade.IProduto;
 import br.com.hslife.encontreaquipecas.model.CriterioProduto;
 
@@ -23,6 +27,9 @@ public class BuscaController extends AbstractController<Produto>{
 	
 	@ManagedProperty(name="service", value="#{produtoService}")
 	private IProduto service;
+	
+	@ManagedProperty(name="bannerService", value="#{bannerService}")
+	private IBanner bannerService;
 	
 	private CriterioProduto criterio;
 	
@@ -58,6 +65,19 @@ public class BuscaController extends AbstractController<Produto>{
 	
 	public String cancel() {
 		return "/produto";
+	}
+	
+	public void paint (OutputStream stream, Object object) throws IOException {
+		stream.write(getListaBanner().get((Integer)object).getDados());
+   }
+	
+	public List<Banner> getListaBanner() {
+		try {
+			return bannerService.buscarTodos();
+		} catch (Exception be) {
+			errorMessage(be.getMessage());
+		}
+		return new ArrayList<Banner>();
 	}
 	
 	public List<String> getListaFabricantes() {
@@ -101,5 +121,9 @@ public class BuscaController extends AbstractController<Produto>{
 
 	public void setCriterio(CriterioProduto criterio) {
 		this.criterio = criterio;
+	}
+
+	public void setBannerService(IBanner bannerService) {
+		this.bannerService = bannerService;
 	}
 }
