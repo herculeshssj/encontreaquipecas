@@ -60,14 +60,7 @@
 					</f:facet>						
 					<h:outputText value="#{item.descricao}"/>
  				</p:column>	  						
-     			
-     			<p:column style="text-align: center; vertical-align: middle;">
-					<f:facet name="header">
-						<h:outputText value="Fabricante"/>
-					</f:facet>						
-					<h:outputText value="#{item.fabricante}"/>
- 				</p:column>
- 				
+     			     						
  				<p:column style="text-align: center; vertical-align: middle;">
 					<f:facet name="header">
 						<h:outputText value="Modelo"/>
@@ -87,6 +80,13 @@
 						<h:outputText value="Loja"/>
 					</f:facet>						
 					<h:outputText value="#{item.loja.usuario.nome}"/>
+ 				</p:column>
+ 				
+ 				<p:column style="text-align: center; vertical-align: middle;">
+					<f:facet name="header">
+						<h:outputText value="Preço"/>
+					</f:facet>						
+					<h:outputText value="#{item.preco}"/>
  				</p:column>
  				
  				<p:column style="text-align: center; vertical-align: middle;">
