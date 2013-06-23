@@ -1,6 +1,7 @@
 package br.com.hslife.encontreaquipecas.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -139,13 +140,17 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 	}
 	
 	public void gerarBoleto() {
+		Calendar dataAtual = Calendar.getInstance();
 		Datas datas = Datas.novasDatas()
-			    .comDocumento(1, 5, 2008)
-			    .comProcessamento(1, 5, 2008)
-			    .comVencimento(2, 5, 2008);  
+			    .comDocumento(dataAtual.get(Calendar.DAY_OF_MONTH), dataAtual.get(Calendar.MONTH),
+			    		dataAtual.get(Calendar.YEAR))
+			    .comProcessamento(dataAtual.get(Calendar.DAY_OF_MONTH), dataAtual.get(Calendar.MONTH),
+			    		dataAtual.get(Calendar.YEAR))
+			    .comVencimento(dataAtual.get(Calendar.DAY_OF_MONTH), dataAtual.get(Calendar.MONTH),
+			    		dataAtual.get(Calendar.YEAR));  
 
 			Emissor emissor = Emissor.novoEmissor()  
-		            .comCedente("Fulano de Tal")  
+		            .comCedente("EncontreAquiPeças")  
 		            .comAgencia(1824).comDigitoAgencia('4')  
 		            .comContaCorrente(76000)  
 		            .comNumeroConvenio(1207113)  
@@ -154,13 +159,9 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 		            .comNossoNumero(9000206);  
 
 		        Sacado sacado = Sacado.novoSacado()  
-			    .comNome("Fulano da Silva")  
-		            .comCpf("111.222.333-12")  
-		            .comEndereco("Av dos testes, 111 apto 333")  
-		            .comBairro("Bairro Teste")  
-		            .comCep("01234-111")  
-		            .comCidade("São Paulo")  
-		            .comUf("SP");  
+			    .comNome(usuario.getNome())  
+		            .comCpf(loja.getCnpj()) 
+		            .comEndereco(endereco.getLabel());  
 
 		        Banco banco = new BancoDoBrasil();  
 
@@ -176,13 +177,13 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 			Boleto boleto = Boleto.novoBoleto()  
 		            .comBanco(banco)  
 		            .comDatas(datas)  
-		            .comDescricoes("descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5")  
+		            .comDescricoes()  
 		            .comEmissor(emissor)  
 		            .comSacado(sacado)		            
 		            .comValorBoleto(valorBoleto)  
 		            .comNumeroDoDocumento("1234")  
-		            .comInstrucoes("instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5")  
-		            .comLocaisDePagamento("local 1", "local 2");  
+		            .comInstrucoes("Pagamento do serviço prestado")  
+		            .comLocaisDePagamento("EncontreAquiPeças");  
 
 		        GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);  
 
@@ -196,7 +197,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 		        byte[] bPDF = gerador.geraPDF();  
 
 		        // Para gerar um array de bytes a partir de um PNG  
-		        byte[] bPNG = gerador.geraPNG();
+		        // byte[] bPNG = gerador.geraPNG();
 		
 			HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 			try {			
