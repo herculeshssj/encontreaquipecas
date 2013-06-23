@@ -22,29 +22,7 @@
 		<h:form>
 		
 			<p:messages/>
-			
-			<center>
-				Fabricante:
-				<h:selectOneMenu value="#{managedBean.criterio.fabricante}">
-					<f:selectItem itemLabel="Todos"/>
-					<f:selectItems value="#{managedBean.listaFabricantes}"/>
-				</h:selectOneMenu>
-				&nbsp;
-				Modelo:
-				<h:selectOneMenu value="#{managedBean.criterio.modelo}">
-					<f:selectItem itemLabel="Todos"/>
-					<f:selectItems value="#{managedBean.listaModelos}"/>
-				</h:selectOneMenu>
-				&nbsp;
-				Ano:
-				<h:selectOneMenu value="#{managedBean.criterio.ano}">
-					<f:selectItem itemLabel="Todos"/>
-					<f:selectItems value="#{managedBean.listaAnos}"/>
-				</h:selectOneMenu>
-				&nbsp;
-				<h:commandButton value="Pesquisar" action="#{managedBean.find}" image="/resources/images/buscar.png"/>
-			</center>
-		
+								
 		<br/>
 		
 		<rich:dataTable value="#{managedBean.listaBanner}" id="tableBanner" var="item" rowKeyVar="row">							
