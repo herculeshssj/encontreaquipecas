@@ -109,6 +109,7 @@ public class BannerController extends AbstractCRUDController<Banner>{
 	
 	public void carregarArquivo(FileUploadEvent event) throws Exception {
 		UploadedFile item = event.getUploadedFile();
+		if (entity == null) entity = new Banner();
 		entity.setDados(item.getData());
 		entity.setNomeArquivo(Util.removerAcentos(item.getName().replace(" ", ".")));
 		entity.setContentType(item.getContentType());
