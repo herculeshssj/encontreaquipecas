@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -45,7 +46,7 @@ public class ProdutoRepository extends AbstractCRUDRepository<Produto> {
 		if (criterio.getAno() != null && !criterio.getAno().trim().isEmpty()) {
 			criteria.add(Restrictions.eq("ano", Integer.parseInt(criterio.getAno())));
 		}
-		return criteria.list();
+		return criteria.addOrder(Order.asc("preco")).list();
 	}
 	
 	@SuppressWarnings("unchecked")
