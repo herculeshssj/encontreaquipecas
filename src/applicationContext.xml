@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.1.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd						
+						http://www.springframework.org/schema/security 
+						http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+						
+	<!-- General -->
+	<context:component-scan base-package="br.com.hslife.encontreaquipecas" />
+	
+	<context:annotation-config/>
+	
+	<!-- AsjectJ -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+ 
+    <!-- data source -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+    </bean>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:db-config.xml"/>
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+ 
+ 	<!-- Spring Security -->
+ 	<sec:http auto-config="true" access-denied-page="/acessoNegado.faces">
+	    <sec:form-login login-page="/login.faces" default-target-url="/pages/menu/inicio.faces" authentication-failure-url="/erroLogin.faces" />
+	    <sec:intercept-url pattern="/pages/**" access="ROLE_USER,ROLE_ADMIN,ROLE_STORE" />
+	</sec:http>
+	
+	<sec:authentication-manager>
+	    <sec:authentication-provider>
+	    	<sec:password-encoder hash="sha"/>
+	        <sec:jdbc-user-service data-source-ref="dataSource"
+	            users-by-username-query="select login as username, senha as password, ativo as enable from usuario where login=?"
+	            authorities-by-username-query="select login as username, tipoUsuario as authority from usuario where login=?" />
+	    </sec:authentication-provider>
+	</sec:authentication-manager>
+</beans>
