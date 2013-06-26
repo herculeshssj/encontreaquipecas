@@ -2,6 +2,8 @@ package br.com.hslife.encontreaquipecas.model;
 
 
 public class CriterioProduto {
+	
+	private String nome;
 
 	private String fabricante;
 	
@@ -31,5 +33,13 @@ public class CriterioProduto {
 
 	public void setAno(String ano) {
 		this.ano = ano;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

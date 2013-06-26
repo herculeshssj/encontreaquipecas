@@ -22,6 +22,12 @@
 			<p:messages/>
 			
 			<center>
+				Nome:
+				<h:selectOneMenu value="#{managedBean.criterio.nome}">
+					<f:selectItem itemLabel="Todos"/>
+					<f:selectItems value="#{managedBean.listaNomes}"/>
+				</h:selectOneMenu>
+				&nbsp;
 				Fabricante:
 				<h:selectOneMenu value="#{managedBean.criterio.fabricante}">
 					<f:selectItem itemLabel="Todos"/>

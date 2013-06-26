@@ -107,6 +107,15 @@ public class BuscaController extends AbstractController<Produto>{
 		return new ArrayList<String>();
 	}
 	
+	public List<String> getListaNomes() {
+		try {
+			return getService().buscarNomes();
+		} catch (Exception be) {
+			errorMessage(be.getMessage());
+		}
+		return new ArrayList<String>();
+	}
+	
 	public IProduto getService() {
 		return service;
 	}

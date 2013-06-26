@@ -56,6 +56,10 @@ public class ProdutoService extends AbstractCRUDService<Produto> implements IPro
 		return getRepository().findAnos();
 	}
 	
+	public List<String> buscarNomes() throws BusinessException {
+		return getRepository().findNomes();
+	}
+	
 	@Override
 	public List<Produto> buscarPorCriterioProduto(CriterioProduto criterio) throws BusinessException {
 		return getRepository().findByCriterioProduto(criterio);

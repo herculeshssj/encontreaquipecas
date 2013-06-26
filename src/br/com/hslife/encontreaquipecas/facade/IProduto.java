@@ -20,6 +20,8 @@ public interface IProduto extends ICRUDService<Produto> {
 	
 	public List<String> buscarAnos() throws BusinessException;
 	
+	public List<String> buscarNomes() throws BusinessException;
+	
 	public List<Produto> buscarPorCriterioProduto(CriterioProduto criterio) throws BusinessException;
 	
 }

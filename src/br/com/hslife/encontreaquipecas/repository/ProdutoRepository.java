@@ -37,6 +37,9 @@ public class ProdutoRepository extends AbstractCRUDRepository<Produto> {
 	@SuppressWarnings("unchecked")
 	public List<Produto> findByCriterioProduto(CriterioProduto criterio) {
 		Criteria criteria = getSession().createCriteria(Produto.class);
+		if (criterio.getNome() != null && !criterio.getNome().trim().isEmpty()) {
+			criteria.add(Restrictions.eq("nome", criterio.getNome()));
+		}
 		if (criterio.getFabricante() != null && !criterio.getFabricante().trim().isEmpty()) {
 			criteria.add(Restrictions.eq("fabricante", criterio.getFabricante()));
 		}
@@ -62,5 +65,10 @@ public class ProdutoRepository extends AbstractCRUDRepository<Produto> {
 	@SuppressWarnings("unchecked")
 	public List<String> findAnos() {
 		return getSession().createSQLQuery("select distinct ano from produto order by ano asc").list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> findNomes() {
+		return getSession().createSQLQuery("select distinct nome from produto order by nome asc").list();
 	}
 }
