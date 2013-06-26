@@ -38,12 +38,14 @@
 			</f:facet>
 			<h:outputText value="#{item.login}" />
 		</p:column>
-
+		
 		<p:column style="text-align: center; vertical-align: middle;">
 			<f:facet name="header">
-				<h:outputText value="E-Mail" />
+				<h:outputText value="Tipo de Usuário" />
 			</f:facet>
-			<h:outputText value="#{item.email}"/>
+			<h:outputText value="#{item.tipoUsuario}">
+				<f:converter converterId="usuarioRoleConverter"/>
+			</h:outputText>
 		</p:column>
 
 		<p:column style="text-align: center; vertical-align: middle;">

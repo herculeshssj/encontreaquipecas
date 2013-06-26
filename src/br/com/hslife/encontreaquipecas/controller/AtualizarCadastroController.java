@@ -1,13 +1,24 @@
 package br.com.hslife.encontreaquipecas.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
+import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.Datas;
+import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
+import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
 import br.com.hslife.encontreaquipecas.entity.Consumidor;
 import br.com.hslife.encontreaquipecas.entity.Endereco;
 import br.com.hslife.encontreaquipecas.entity.Loja;
@@ -41,6 +52,9 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 	private String loginUsuario;
 	private String perfilUsuario;
 	
+	private boolean mudouAreaInteresse;
+	private AreaInteresse areaInteresseAnterior;
+	
 	public AtualizarCadastroController() {
 		super(new Usuario());
 		
@@ -69,6 +83,8 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 					loja = getService().buscarLojaPorLogin(getUsuarioLogado().getLogin());
 					endereco = loja.getEndereco();
 					usuario = loja.getUsuario();
+					areaInteresseAnterior = loja.getAreaInteresse();
+					mudouAreaInteresse = false;
 				} else {
 					errorMessage("Opção inválida!");
 				}
@@ -101,6 +117,8 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 				loja = getService().buscarLojaPorLogin(u.getLogin());
 				endereco = loja.getEndereco();
 				usuario = loja.getUsuario();
+				areaInteresseAnterior = loja.getAreaInteresse();
+				mudouAreaInteresse = false;
 			} else {
 				errorMessage("Opção inválida!");
 				return "";
@@ -121,6 +139,9 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 				loja.validate();
 				getService().atualizarCadastro(loja);
 				infoMessage("Dados atualizados com sucesso!");
+				if (!areaInteresseAnterior.equals(loja.getAreaInteresse())) {
+					mudouAreaInteresse = true;
+				}
 			} else if (perfilUsuario.equals("CONSUMIDOR")) {
 				consumidor.setEndereco(endereco);
 				consumidor.setUsuario(usuario);
@@ -133,6 +154,80 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
 		}
+	}
+	
+	public void gerarBoleto() {
+		Calendar dataAtual = Calendar.getInstance();
+		Datas datas = Datas.novasDatas()
+			    .comDocumento(dataAtual.get(Calendar.DAY_OF_MONTH), dataAtual.get(Calendar.MONTH),
+			    		dataAtual.get(Calendar.YEAR))
+			    .comProcessamento(dataAtual.get(Calendar.DAY_OF_MONTH), dataAtual.get(Calendar.MONTH),
+			    		dataAtual.get(Calendar.YEAR))
+			    .comVencimento(dataAtual.get(Calendar.DAY_OF_MONTH), dataAtual.get(Calendar.MONTH),
+			    		dataAtual.get(Calendar.YEAR));  
+
+			Emissor emissor = Emissor.novoEmissor()  
+		            .comCedente("EncontreAquiPeças")  
+		            .comAgencia(1824).comDigitoAgencia('4')  
+		            .comContaCorrente(76000)  
+		            .comNumeroConvenio(1207113)  
+		            .comDigitoContaCorrente('5')  
+		            .comCarteira(18)  
+		            .comNossoNumero(9000206);  
+
+		        Sacado sacado = Sacado.novoSacado()  
+			    .comNome(usuario.getNome())  
+		            .comCpf(loja.getCnpj()) 
+		            .comEndereco(endereco.getLabel());  
+
+		        Banco banco = new BancoDoBrasil();  
+
+		        // Setar o valor do boleto de acordo com o tipo de serviço
+		        double valorBoleto = 0.0;
+		        if (loja.getAreaInteresse().equals(AreaInteresse.BANNER)) {
+		        	valorBoleto = 50;
+		        } else {
+		        	valorBoleto = 150;
+		        }
+		        
+		        
+			Boleto boleto = Boleto.novoBoleto()  
+		            .comBanco(banco)  
+		            .comDatas(datas)  
+		            .comDescricoes()  
+		            .comEmissor(emissor)  
+		            .comSacado(sacado)		            
+		            .comValorBoleto(valorBoleto)  
+		            .comNumeroDoDocumento("1234")  
+		            .comInstrucoes("Pagamento do serviço prestado")  
+		            .comLocaisDePagamento("EncontreAquiPeças");  
+
+		        GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);  
+
+		        // Para gerar um boleto em PDF  
+		        gerador.geraPDF("BancoDoBrasil.pdf");  
+
+		        // Para gerar um boleto em PNG  
+		        gerador.geraPNG("BancoDoBrasil.png");  
+
+		        // Para gerar um array de bytes a partir de um PDF  
+		        byte[] bPDF = gerador.geraPDF();  
+
+		        // Para gerar um array de bytes a partir de um PNG  
+		        // byte[] bPNG = gerador.geraPNG();
+		
+			HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+			try {			
+				response.setContentType("application/pdf");
+				response.setHeader("Content-Disposition","attachment; filename=boleto.pdf");
+				response.setContentLength(bPDF.length);
+				ServletOutputStream output = response.getOutputStream();
+				output.write(bPDF, 0, bPDF.length);
+				FacesContext.getCurrentInstance().responseComplete();
+			} catch (Exception e) {
+				errorMessage(e.getMessage());
+			}
+			mudouAreaInteresse = false;
 	}
 	
 	public List<SelectItem> getListaAreaInteresse() {
@@ -204,6 +299,22 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public boolean isMudouAreaInteresse() {
+		return mudouAreaInteresse;
+	}
+
+	public void setMudouAreaInteresse(boolean mudouAreaInteresse) {
+		this.mudouAreaInteresse = mudouAreaInteresse;
+	}
+
+	public AreaInteresse getAreaInteresseAnterior() {
+		return areaInteresseAnterior;
+	}
+
+	public void setAreaInteresseAnterior(AreaInteresse areaInteresseAnterior) {
+		this.areaInteresseAnterior = areaInteresseAnterior;
 	}
 	
 	/*

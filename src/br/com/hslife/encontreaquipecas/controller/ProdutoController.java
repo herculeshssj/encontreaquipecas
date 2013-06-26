@@ -65,6 +65,19 @@ public class ProdutoController extends AbstractCRUDController<Produto>{
 	}
 	
 	@Override
+	public String save() {
+		try {
+			if (!getUsuarioLogado().getLogin().equals("admin")) {				
+				entity.setLoja(lojaService.buscarPorLogin(getUsuarioLogado().getLogin()));							
+			}
+			return super.save();
+		} catch (BusinessException be) {
+			errorMessage(be.getMessage());
+		}
+		return "";
+	}
+	
+	@Override
 	public String find() {
 		try {
 			if (getUsuarioLogado().getLogin().equals("admin")) {

@@ -16,7 +16,9 @@ public class UsuarioRoleConverter implements Converter{
 		try {
 			if (valor.equalsIgnoreCase("Administrador")) 
 				return TipoUsuario.ROLE_ADMIN;
-			else			
+			else if (valor.equalsIgnoreCase("Loja")) 
+				return TipoUsuario.ROLE_STORE;
+			else
 				return TipoUsuario.ROLE_USER;			
 		} catch (Exception e) {
 			throw new ConverterException(e);
@@ -28,6 +30,8 @@ public class UsuarioRoleConverter implements Converter{
 		try {
 			if ( ((TipoUsuario)valor).equals(TipoUsuario.ROLE_ADMIN)) {
 				return "Administrador";
+			} else if ( ((TipoUsuario)valor).equals(TipoUsuario.ROLE_STORE)) {
+				return "Loja";	
 			} else {
 				return "Usuário";
 			}

@@ -26,10 +26,14 @@
 		<br/>
 		
 		<rich:dataTable value="#{managedBean.listaBanner}" id="tableBanner" var="item" rowKeyVar="row">							
-			<rich:column style="text-align: center">				
+			<rich:column style="text-align: center; vertical-align: middle">				
 				<a4j:mediaOutput id="preview" element="img" mimeType="#{item.contentType}" createContent="#{managedBean.paint}" cacheable="false" value="#{row}" session="true"></a4j:mediaOutput>																
 			</rich:column>
-			<rich:column style="text-align: center">
+			<rich:column style="text-align: center; vertical-align: middle">
+				<h:outputText value="#{item.loja.usuario.nome}" style="font-weight: bold"/><br/>
+				<h:outputText value="#{item.loja.endereco.label}"/>
+			</rich:column>
+			<rich:column style="text-align: center; vertical-align: middle">
 				<h:outputLink value="#{item.loja.site}" target="_blank">Ir para o site</h:outputLink>
 			</rich:column>
 		</rich:dataTable>

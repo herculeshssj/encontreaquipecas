@@ -39,6 +39,9 @@
 						<f:selectItems value="#{managedBean.listaAreaInteresse}"/>
 					</p:selectOneRadio>
 					
+					<h:outputText value="" rendered="#{managedBean.mudouAreaInteresse}"/>
+					<h:commandLink value="Clique aqui para gerar o boleto" action="#{managedBean.gerarBoleto}" rendered="#{managedBean.mudouAreaInteresse}" />
+					
 					* Informe o e-mail:
                     <p:inputText value="#{managedBean.usuario.email}" size="30"/>
                     

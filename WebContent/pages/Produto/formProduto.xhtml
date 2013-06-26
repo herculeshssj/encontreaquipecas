@@ -33,8 +33,8 @@
 			Ano:
 			<p:inputText value="#{managedBean.entity.ano}"/>
 			
-			Loja:
-			<h:selectOneMenu value="#{managedBean.entity.loja}" converter="entityConverter">
+			<h:outputText value="Loja:" rendered="#{managedBean.usuarioLogado.login == 'admin'}"/>
+			<h:selectOneMenu value="#{managedBean.entity.loja}" converter="entityConverter" rendered="#{managedBean.usuarioLogado.login == 'admin'}">
 				<f:selectItems value="#{managedBean.listaLoja}" var="item" itemLabel="#{item.label}" itemValue="#{item}"/>
 			</h:selectOneMenu>
 		
