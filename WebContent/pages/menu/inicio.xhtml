@@ -24,22 +24,22 @@
 			<h:panelGrid columns="5" width="100%" style="text-align: center">
 			
 				<h:commandButton action="#{atualizarCadastroMB.startUp}" image="/resources/images/anotacoes.png" title="Atualizar Dados Cadastrais"/>				
+				<h:commandButton action="#{historicoPesquisaMB.startUp}" image="/resources/images/historico.png" title="Histórico de Pesquisa" rendered="#{historicoPesquisaMB.usuarioLogado.tipoUsuario != 'ROLE_STORE'}"/>
+				<h:outputText value="" rendered="#{produtoMB.usuarioLogado.tipoUsuario == 'ROLE_STORE'}"/>
 				<h:commandButton action="#{produtoMB.startUp}" image="/resources/images/despensa.png" title="Produtos" rendered="#{produtoMB.usuarioLogado.tipoUsuario != 'ROLE_USER'}"/>
 				<h:outputText value="" rendered="#{produtoMB.usuarioLogado.tipoUsuario == 'ROLE_USER'}"/>
 				<h:commandButton action="#{bannerMB.startUp}" image="/resources/images/banner.png" title="Banner" rendered="#{bannerMB.usuarioLogado.tipoUsuario != 'ROLE_USER'}"/>
 				<h:outputText value="" rendered="#{bannerMB.usuarioLogado.tipoUsuario == 'ROLE_USER'}"/>
 				<h:commandButton action="#{usuarioMB.startUp}" image="/resources/images/usuarios.png" title="Usuários"/>				
-				<h:commandButton action="#{auditoriaMB.startUp}" image="/resources/images/auditoria.png" title="Auditoria do Sistema" rendered="#{auditoriaMB.usuarioLogado.login == 'admin'}"/>
-				<h:outputText value="" rendered="#{auditoriaMB.usuarioLogado.login != 'admin'}"/>
 				
 				<h:outputText value="Atualizar Dados Cadastrais"/>				
+				<h:outputText value="Histórico de Pesquisa" rendered="#{produtoMB.usuarioLogado.tipoUsuario != 'ROLE_STORE'}"/>
+				<h:outputText value="" rendered="#{produtoMB.usuarioLogado.tipoUsuario == 'ROLE_STORE'}"/>				
 				<h:outputText value="Produtos" rendered="#{produtoMB.usuarioLogado.tipoUsuario != 'ROLE_USER'}"/>
 				<h:outputText value="" rendered="#{produtoMB.usuarioLogado.tipoUsuario == 'ROLE_USER'}"/>
 				<h:outputText value="Banner" rendered="#{bannerMB.usuarioLogado.tipoUsuario != 'ROLE_USER'}"/>
 				<h:outputText value="" rendered="#{bannerMB.usuarioLogado.tipoUsuario == 'ROLE_USER'}"/>
 				<h:outputText value="Usuários"/>
-				<h:outputText value="Auditoria do Sistema" rendered="#{auditoriaMB.usuarioLogado.login == 'admin'}"/>
-				<h:outputText value="" rendered="#{auditoriaMB.usuarioLogado.login != 'admin'}"/>
 					
 			</h:panelGrid>
 		

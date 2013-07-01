@@ -132,4 +132,17 @@ create table produto(
 
 alter table produto add constraint fk_loja_produto foreign key loja (idLoja) references loja (id);
 
+create table historicopesquisa (
+	id bigint(20) not null auto_increment,
+	idConsumidor bigint(20) not null,
+	nome varchar(255) null,
+	fabricante varchar(255) null,
+	modelo varchar(255)  null,	
+	ano varchar(255) null,
+	realizadoEm datetime not null,
+	primary key(id)
+);
+
+alter table historicopesquisa add constraint fk_consumidor_historicopesquisa foreign key consumidor (idConsumidor) references consumidor (id);
+
 insert into usuario (ativo, dataCriacao, login, nome, senha, tipoUsuario, email) values (true, '2013-01-01', 'admin', 'Administrador do Sistema', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'ROLE_ADMIN', 'contato@hslife.com.br');

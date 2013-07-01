@@ -17,6 +17,7 @@
 		<mapping class="br.com.hslife.encontreaquipecas.entity.Banner"/>
 		<mapping class="br.com.hslife.encontreaquipecas.entity.Consumidor"/>
 		<mapping class="br.com.hslife.encontreaquipecas.entity.Endereco"/>
+		<mapping class="br.com.hslife.encontreaquipecas.entity.HistoricoPesquisa"/>
 		<mapping class="br.com.hslife.encontreaquipecas.entity.Loja"/>
 		<mapping class="br.com.hslife.encontreaquipecas.entity.Produto"/>
 		<mapping class="br.com.hslife.encontreaquipecas.entity.Telefone"/>

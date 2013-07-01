@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/visualizar.xhtml">
+
+	<ui:param name="managedBean" value="#{produtoMB}" />
+
+	<ui:define name="campos">
+
+		<h:panelGrid columns="2">
+		
+			Nome:
+			<h:outputText value="#{managedBean.entity.nome}"/>
+			
+			Descrição:
+			<h:outputText value="#{managedBean.entity.descricao}"/>
+			
+			Modelo:
+			<h:outputText value="#{managedBean.entity.modelo}"/>
+			
+			Fabricante:
+			<h:outputText value="#{managedBean.entity.fabricante}"/>
+			
+			Preço:
+			<h:outputText value="#{managedBean.entity.preco}"/>
+			
+			Ano:
+			<h:outputText value="#{managedBean.entity.ano}"/>
+			
+			Loja:
+			<h:outputText value="#{managedBean.entity.loja.usuario.nome}"/>
+		
+		</h:panelGrid>
+
+	</ui:define>
+</ui:composition>
+</html>
