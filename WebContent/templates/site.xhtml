@@ -22,6 +22,7 @@
 					</div>
 					<div id="site-description">
 						Seja bem vindo
+						<h:outputText value="#{usuarioMB.usuarioLogado.nome}" />
 					</div>
 
 					<h:graphicImage name="header.jpg" library="images" width="940"
@@ -53,8 +54,9 @@
 								<li class="page_item page-item-8"><a
 									href="#{request.contextPath}/faleconosco.faces">Fale conosco</a></li>
 
-								<li class="page_item page-item-8"><a
-									href="#{request.contextPath}/login.faces">Entrar</a>
+								<li class="page_item page-item-8">
+								<h:outputLink value="#{request.contextPath}/login.faces" rendered="#{empty usuarioMB.usuarioLogado.nome}">Entrar</h:outputLink>
+								<h:outputLink value="#{request.contextPath}/pages/menu/inicio.faces" rendered="#{not empty usuarioMB.usuarioLogado.nome}">Administração</h:outputLink>								
 								</li>
 							</ul>
 						</h:form>

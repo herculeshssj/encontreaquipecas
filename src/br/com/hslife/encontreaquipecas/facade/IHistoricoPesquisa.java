@@ -11,4 +11,6 @@ public interface IHistoricoPesquisa extends ICRUDService<HistoricoPesquisa> {
 
 	public List<HistoricoPesquisa> buscarPorConsumidor(Consumidor consumidor) throws BusinessException;
 	
+	public Consumidor buscarPorLogin(String login) throws BusinessException;
+	
 }

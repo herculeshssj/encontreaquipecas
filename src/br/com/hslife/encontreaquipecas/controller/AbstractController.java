@@ -51,11 +51,15 @@ public abstract class AbstractController<E> implements Serializable {
 		if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado") == null) {
 			Usuario u = new Usuario();
 			try {
-				u = usuarioComponent.getUsuarioLogado();
-				u.setSenha(null);
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", u);
+				if (usuarioComponent.getUsuarioLogado() != null) {
+					u = usuarioComponent.getUsuarioLogado();
+					u.setSenha(null);
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", u);
+					
+				}
 			} catch (Exception e) {
 				errorMessage(e.getMessage());
+				e.printStackTrace();
 			}
 		}
 		return (Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");

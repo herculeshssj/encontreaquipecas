@@ -9,7 +9,7 @@
 
 <ui:composition template="/templates/visualizar.xhtml">
 
-	<ui:param name="managedBean" value="#{produtoMB}" />
+	<ui:param name="managedBean" value="#{historicoPesquisaMB}" />
 
 	<ui:define name="campos">
 
@@ -18,23 +18,19 @@
 			Nome:
 			<h:outputText value="#{managedBean.entity.nome}"/>
 			
-			Descrição:
-			<h:outputText value="#{managedBean.entity.descricao}"/>
-			
 			Modelo:
 			<h:outputText value="#{managedBean.entity.modelo}"/>
 			
 			Fabricante:
 			<h:outputText value="#{managedBean.entity.fabricante}"/>
 			
-			Preço:
-			<h:outputText value="#{managedBean.entity.preco}"/>
-			
 			Ano:
 			<h:outputText value="#{managedBean.entity.ano}"/>
 			
-			Loja:
-			<h:outputText value="#{managedBean.entity.loja.usuario.nome}"/>
+			Realizado em:
+			<h:outputText value="#{managedBean.entity.realizadoEm}">
+						<f:converter converterId="dateConverter"/>
+					</h:outputText>
 		
 		</h:panelGrid>
 

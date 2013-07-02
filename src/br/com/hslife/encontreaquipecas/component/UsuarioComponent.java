@@ -70,10 +70,14 @@ public class UsuarioComponent {
         if (context instanceof SecurityContext) {
             Authentication authentication = context.getAuthentication();
             if (authentication instanceof Authentication) {
-            	login = ((User)authentication.getPrincipal()).getUsername();
+            	if (authentication.getPrincipal() instanceof User) {
+            		System.out.println(authentication.getPrincipal());
+            		login = ((User)authentication.getPrincipal()).getUsername();
+            		return usuarioRepository.findByLogin(login);
+            	}
             }
         }
-        return usuarioRepository.findByLogin(login);
+        return null;
 	}
 
 }

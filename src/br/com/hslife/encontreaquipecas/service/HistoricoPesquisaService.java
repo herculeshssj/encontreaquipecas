@@ -38,9 +38,14 @@ public class HistoricoPesquisaService extends AbstractCRUDService<HistoricoPesqu
 
 
 	@Override
-	public List<HistoricoPesquisa> buscarPorConsumidor(Consumidor consumidor)
-			throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}	
+	public List<HistoricoPesquisa> buscarPorConsumidor(Consumidor consumidor) throws BusinessException {
+		return getRepository().findByConsumidor(consumidor);
+	}
+
+
+
+	@Override
+	public Consumidor buscarPorLogin(String login) throws BusinessException {
+		return getRepository().findLojaByLogin(login);
+	}
 }

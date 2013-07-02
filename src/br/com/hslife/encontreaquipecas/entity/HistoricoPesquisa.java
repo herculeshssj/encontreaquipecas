@@ -46,6 +46,10 @@ public class HistoricoPesquisa extends EntityPersistence {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date realizadoEm;
+	
+	public HistoricoPesquisa() {
+		realizadoEm = new Date();
+	}
 
 	public Long getId() {
 		return id;
@@ -104,5 +108,13 @@ public class HistoricoPesquisa extends EntityPersistence {
 	public void validate() throws BusinessException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Date getRealizadoEm() {
+		return realizadoEm;
+	}
+
+	public void setRealizadoEm(Date realizadoEm) {
+		this.realizadoEm = realizadoEm;
 	}
 }

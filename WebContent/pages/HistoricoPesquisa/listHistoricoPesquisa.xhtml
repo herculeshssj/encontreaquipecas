@@ -68,11 +68,14 @@
 	</ui:define>
 	
 	<ui:define name="acoes">
-		
-		<h:commandButton value="Excluir" image="/resources/images/excluir.png" action="#{managedBean.view}">
+		<p:column style="text-align: center; vertical-align: middle;" exportable="false">
+						<f:facet name="header">
+							<h:outputText value="Ações"/>
+						</f:facet>						
+						<h:commandButton value="Excluir" image="/resources/images/excluir.png" action="#{managedBean.view}">
 							<f:setPropertyActionListener value="#{item.id}" target="#{managedBean.idEntity}"/>
 						</h:commandButton>
-	
+	  				</p:column>
 	</ui:define>
 
 </ui:composition>

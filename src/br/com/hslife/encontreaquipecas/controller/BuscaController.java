@@ -10,9 +10,12 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import br.com.hslife.encontreaquipecas.entity.Banner;
+import br.com.hslife.encontreaquipecas.entity.HistoricoPesquisa;
 import br.com.hslife.encontreaquipecas.entity.Produto;
+import br.com.hslife.encontreaquipecas.enumeration.TipoUsuario;
 import br.com.hslife.encontreaquipecas.exception.BusinessException;
 import br.com.hslife.encontreaquipecas.facade.IBanner;
+import br.com.hslife.encontreaquipecas.facade.IHistoricoPesquisa;
 import br.com.hslife.encontreaquipecas.facade.IProduto;
 import br.com.hslife.encontreaquipecas.model.CriterioProduto;
 
@@ -31,6 +34,9 @@ public class BuscaController extends AbstractController<Produto>{
 	@ManagedProperty(name="bannerService", value="#{bannerService}")
 	private IBanner bannerService;
 	
+	@ManagedProperty(name="historicoPesquisaService", value="#{historicoPesquisaService}")
+	private IHistoricoPesquisa historicoPesquisaService;
+	
 	private CriterioProduto criterio;
 	
 	public BuscaController() {
@@ -47,9 +53,21 @@ public class BuscaController extends AbstractController<Produto>{
 	public String find() {
 		try {
 			listEntity = getService().buscarPorCriterioProduto(criterio);
+			
+			// Salva a busca quando o usuário está logado
+			if (getUsuarioLogado() != null && getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.ROLE_USER)) {
+				HistoricoPesquisa hp = new HistoricoPesquisa();
+				hp.setAno(criterio.getAno());
+				hp.setFabricante(criterio.getFabricante());
+				hp.setModelo(criterio.getModelo());
+				hp.setNome(criterio.getNome());
+				hp.setConsumidor(historicoPesquisaService.buscarPorLogin(getUsuarioLogado().getLogin()));
+				historicoPesquisaService.cadastrar(hp);
+			}			
 			return "/produto";
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
+			be.getCause().printStackTrace();
 		}
 		return "";
 	}
@@ -134,5 +152,10 @@ public class BuscaController extends AbstractController<Produto>{
 
 	public void setBannerService(IBanner bannerService) {
 		this.bannerService = bannerService;
+	}
+
+	public void setHistoricoPesquisaService(
+			IHistoricoPesquisa historicoPesquisaService) {
+		this.historicoPesquisaService = historicoPesquisaService;
 	}
 }
