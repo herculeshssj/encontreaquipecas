@@ -30,14 +30,14 @@ public class ProdutoRepositoryTest extends AbstractTransactionalJUnit4SpringCont
 
 	@Test
 	public void testFindByNome() {		
-		String nomeProduto = "Produto 1";
+		String nomeProduto = "Cabo";
 		List<Produto> produtos = produtoRepository.findByNome(nomeProduto);
 		for (Produto p : produtos) {
 			if (p.getNome().equals(nomeProduto)) {
 				return;
 			}
 		}
-		fail("Produto n√£o encontrado!");
+		fail("Produto n„o encontrado!");
 	}
 
 }

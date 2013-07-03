@@ -71,11 +71,11 @@ public class Loja extends EntityPersistence {
 	@Override
 	public void validate() throws BusinessException {
 		if (endereco == null) {
-			throw new BusinessException("Informe o endereÃ§o!");
+			throw new BusinessException("Informe o endereço!");
 		}
 		
 		if (usuario == null) {
-			throw new BusinessException("Informe o usuÃ¡rio!");
+			throw new BusinessException("Informe o usuário!");
 		}
 		
 		if (telefones == null || telefones.size() == 0) {
@@ -99,15 +99,15 @@ public class Loja extends EntityPersistence {
 		}
 		
 		if (!Util.validCnpj(this.cnpj)) {
-			throw new BusinessException("CNPJ informado nÃ£o Ã© vÃ¡lido!");
+			throw new BusinessException("CNPJ informado não é válido!");
 		}
 		
 		if (this.inscricaoEstadual == null || this.inscricaoEstadual.trim().isEmpty()) {
-			throw new BusinessException("Informe a inscriÃ§Ã£o estadual!");
+			throw new BusinessException("Informe a inscrição estadual!");
 		}
 		
 		if (this.inscricaoEstadual.length() > 10) {
-			throw new BusinessException("InscriÃ§Ã£o estadual deve ser menor que 10 caracteres!");
+			throw new BusinessException("Inscrição estadual deve ser menor que 10 caracteres!");
 		}
 		
 		if (this.site != null && this.site.length() > 100) {

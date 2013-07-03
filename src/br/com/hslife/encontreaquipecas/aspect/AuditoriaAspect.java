@@ -62,7 +62,7 @@ public class AuditoriaAspect {
 	
 	@Around("execution(public void br.com.hslife.encontreaquipecas.repository.IRepository.update(..)) && args(entity)")
 	public void afterUpdate(ProceedingJoinPoint executaMetodo, EntityPersistence entity) throws Throwable {
-		System.out.println("Atualiza√ß√£o detectada. Auditoria executada!");
+		System.out.println("AtualizaÁ„o detectada. Auditoria executada!");
 		System.out.println("Classe detectada: " + entity.getClass().getName());
 		
 		Auditoria auditoria  = new Auditoria();
@@ -103,7 +103,7 @@ public class AuditoriaAspect {
 	
 	@AfterReturning(pointcut="execution(public void br.com.hslife.encontreaquipecas.repository.IRepository.delete(..)) && args(entity)")
 	public void afterDelete(EntityPersistence entity) {
-		System.out.println("Exclus√£o detectada. Executando auditoria!");
+		System.out.println("Exclus„o detectada. Executando auditoria!");
 		System.out.println("Classe detectada: " + entity.getClass().getName());
 		
 		Auditoria auditoria = new Auditoria();

@@ -53,7 +53,7 @@ public class BannerController extends AbstractCRUDController<Banner>{
 					this.find();
 					return super.startUp();
 				} else {
-					warnMessage("Voc√™ n√£o est√° habilitado para utilizar este servi√ßo!");
+					warnMessage("VocÍ n„oo est· habilitado para utilizar este serviÁo!");
 					return "";
 				}
 			} else {
@@ -92,7 +92,7 @@ public class BannerController extends AbstractCRUDController<Banner>{
 		try {
 			ImageIcon temp = new ImageIcon(entity.getDados());
 			if (temp.getIconWidth() !=  468 && temp.getIconHeight() != 60) {
-				warnMessage("Banner deve ter as dimens√µes 468px x 60px!");
+				warnMessage("Banner deve ter as dimensıes 468px x 60px!");
 			} else {
 				if (getUsuarioLogado().getLogin().equals("admin")) {
 					return super.save();
@@ -139,7 +139,7 @@ public class BannerController extends AbstractCRUDController<Banner>{
 			warnMessage("Nenhum arquivo adicionado");
 		} else {
 			entity = new Banner();
-			infoMessage("Arquivo exclu√≠do!");
+			infoMessage("Arquivo excluÌdo!");
 		}
 	}
 	

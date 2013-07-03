@@ -80,7 +80,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 			telefone = new Telefone();
 			usuario = new Usuario();
 		} else {
-			errorMessage("Op√ß√£o inv√°lida!");
+			errorMessage("OpÁ„o inv·lida!");
 			return "";
 		}
 		return "efetuarRegistroPasso2";
@@ -107,7 +107,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 				consumidor.validate();
 				return "efetuarRegistroPasso3";
 			} else {
-				errorMessage("Op√ß√£o inv√°lida!");
+				errorMessage("OpÁ„o inv·lida!");
 			}
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
@@ -122,7 +122,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 			} else if (perfilUsuario.equals("CONSUMIDOR")) {
 				getService().efetuarRegistro(consumidor);
 			} else {
-				errorMessage("Op√ß√£o inv√°lida!");
+				errorMessage("OpÁ„o inv·lida!");
 			}
 			return "efetuarRegistroPasso4";
 		} catch (BusinessException be) {
@@ -150,7 +150,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 			    		dataAtual.get(Calendar.YEAR));  
 
 			Emissor emissor = Emissor.novoEmissor()  
-		            .comCedente("EncontreAquiPe√ßas")  
+		            .comCedente("EncontreAquiPeÁas")  
 		            .comAgencia(1824).comDigitoAgencia('4')  
 		            .comContaCorrente(76000)  
 		            .comNumeroConvenio(1207113)  
@@ -182,8 +182,8 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 		            .comSacado(sacado)		            
 		            .comValorBoleto(valorBoleto)  
 		            .comNumeroDoDocumento("1234")  
-		            .comInstrucoes("Pagamento do servi√ßo prestado")  
-		            .comLocaisDePagamento("EncontreAquiPe√ßas");  
+		            .comInstrucoes("Pagamento do serviÁo prestado")  
+		            .comLocaisDePagamento("EncontreAquiPeÁas");  
 
 		        GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);  
 
@@ -215,7 +215,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 	public List<SelectItem> getListaAreaInteresse() {
 		List<SelectItem> listaSelectItem = new ArrayList<SelectItem>();
 		listaSelectItem.add(new SelectItem(AreaInteresse.BANNER, "Banner"));
-		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "Divulga√ß√£o de produto"));
+		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "DivulgaÁ„o de produto"));
 		return listaSelectItem;
 	}
 	

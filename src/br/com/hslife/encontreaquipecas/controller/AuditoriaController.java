@@ -63,7 +63,7 @@ public class AuditoriaController extends AbstractController<Auditoria> {
 		try {
 			entity = getService().buscarPorId(idEntity);
 			getService().excluir(entity);
-			infoMessage("Registro excluído com sucesso!");
+			infoMessage("Registro excluido com sucesso!");
 			initializeEntity();
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
@@ -80,7 +80,7 @@ public class AuditoriaController extends AbstractController<Auditoria> {
 					entity = getService().buscarPorId(auditoria.getId());
 					getService().excluir(entity);
 				}				
-				infoMessage("Registros excluídos com sucesso!");
+				infoMessage("Registros excluidos com sucesso!");
 				initializeEntity();
 			} catch (BusinessException be) {
 				errorMessage(be.getMessage());

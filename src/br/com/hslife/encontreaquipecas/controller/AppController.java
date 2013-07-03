@@ -150,7 +150,7 @@ public abstract class AppController<T extends EntityPersistence> implements Seri
 	}
 	
 	public String delete() {
-		viewMessage("Registro excluído com sucesso!");
+		viewMessage("Registro excluido com sucesso!");
 		initializeEntity();
 		return list();
 	}

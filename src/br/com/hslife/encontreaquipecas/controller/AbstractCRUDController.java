@@ -94,7 +94,7 @@ public abstract class AbstractCRUDController<E extends EntityPersistence> extend
 		try {
 			validate(operation);
 			getService().excluir(entity);
-			infoMessage("Registro excluÃ­do com sucesso!");
+			infoMessage("Registro excluído com sucesso!");
 			initializeEntity();
 			return list();
 		} catch (BusinessException be) {

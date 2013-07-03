@@ -33,7 +33,7 @@ public class UsuarioRoleConverter implements Converter{
 			} else if ( ((TipoUsuario)valor).equals(TipoUsuario.ROLE_STORE)) {
 				return "Loja";	
 			} else {
-				return "Usu√°rio";
+				return "Usu·rio";
 			}
 		} catch (Exception e) {
 			throw new ConverterException(e);

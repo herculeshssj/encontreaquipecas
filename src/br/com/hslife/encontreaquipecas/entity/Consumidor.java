@@ -50,11 +50,11 @@ public class Consumidor extends EntityPersistence {
 	@Override
 	public void validate() throws BusinessException {
 		if (endereco == null) {
-			throw new BusinessException("Informe o endere√ßo!");
+			throw new BusinessException("Informe o endereÁo!");
 		}
 		
 		if (usuario == null) {
-			throw new BusinessException("Informe o usu√°rio!");
+			throw new BusinessException("Informe o usu·rio!");
 		}
 		
 		if (telefones == null || telefones.size() == 0) {

@@ -86,7 +86,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 					areaInteresseAnterior = loja.getAreaInteresse();
 					mudouAreaInteresse = false;
 				} else {
-					errorMessage("Op√ß√£o inv√°lida!");
+					errorMessage("OpÁ„o inv·lida!");
 				}
 			} catch (BusinessException be) {
 				errorMessage(be.getMessage());
@@ -120,7 +120,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 				areaInteresseAnterior = loja.getAreaInteresse();
 				mudouAreaInteresse = false;
 			} else {
-				errorMessage("Op√ß√£o inv√°lida!");
+				errorMessage("OpÁ„o inv·lida!");
 				return "";
 			}
 			return "/pages/Cadastro/formCadastro"; 
@@ -149,7 +149,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 				getService().atualizarCadastro(consumidor);
 				infoMessage("Dados atualizados com sucesso!");
 			} else {
-				errorMessage("Op√ß√£o inv√°lida!");
+				errorMessage("OpÁ„o inv·lida!");
 			}			
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
@@ -199,8 +199,8 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 		            .comSacado(sacado)		            
 		            .comValorBoleto(valorBoleto)  
 		            .comNumeroDoDocumento("1234")  
-		            .comInstrucoes("Pagamento do servi√ßo prestado")  
-		            .comLocaisDePagamento("EncontreAquiPe√ßas");  
+		            .comInstrucoes("Pagamento do serviÁo prestado")  
+		            .comLocaisDePagamento("EncontreAquiPecas");  
 
 		        GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);  
 
@@ -233,7 +233,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 	public List<SelectItem> getListaAreaInteresse() {
 		List<SelectItem> listaSelectItem = new ArrayList<SelectItem>();
 		listaSelectItem.add(new SelectItem(AreaInteresse.BANNER, "Banner"));
-		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "Divulga√ß√£o de produto"));
+		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "DivulgaÁ„o de produto"));
 		return listaSelectItem;
 	}
 	

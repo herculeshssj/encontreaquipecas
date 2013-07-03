@@ -50,11 +50,11 @@ public class Telefone extends EntityPersistence {
 		}
 		
 		if (this.numero == null || this.numero.trim().isEmpty()) {
-			throw new BusinessException("Informe o nÃºmero!");
+			throw new BusinessException("Informe o número!");
 		}
 		
 		if (this.numero.length() > 10) {
-			throw new BusinessException("NÃºmero deve ser menor que 10 caracteres!");
+			throw new BusinessException("Número deve ser menor que 10 caracteres!");
 		}
 	}
 

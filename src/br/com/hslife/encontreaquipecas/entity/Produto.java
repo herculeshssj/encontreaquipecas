@@ -66,7 +66,7 @@ public class Produto extends EntityPersistence {
 		}
 		
 		if (descricao == null || descricao.trim().isEmpty()) {
-			throw new BusinessException("Informe a descriÃ§Ã£o do produto!");
+			throw new BusinessException("Informe a descrição do produto!");
 		}
 		
 		if (fabricante == null || fabricante.trim().isEmpty()) {
@@ -78,11 +78,11 @@ public class Produto extends EntityPersistence {
 		}
 		
 		if (preco < 0) {
-			throw new BusinessException("PreÃ§o nÃ£o pode ser menor que 0!");
+			throw new BusinessException("Preço não pode ser menor que 0!");
 		}
 		
 		if (ano < 0) {
-			throw new BusinessException("Ano nÃ£o pode ser menor que 0!");
+			throw new BusinessException("Ano não pode ser menor que 0!");
 		}
 	}
 	

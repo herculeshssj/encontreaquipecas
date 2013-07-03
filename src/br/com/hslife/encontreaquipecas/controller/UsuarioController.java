@@ -34,7 +34,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 
 	@Override
 	public String startUp() {
-		moduleTitle = "UsuÃ¡rios";
+		moduleTitle = "Usuários";
 		return super.startUp();
 	}
 	
@@ -62,13 +62,13 @@ public class UsuarioController extends AbstractController<Usuario> {
 	
 	public String list() {
 		operation = "list";
-		moduleTitle = "UsuÃ¡rios";
+		moduleTitle = "Usuários";
 		return "/pages/" + entity.getClass().getSimpleName() + "/list" + entity.getClass().getSimpleName(); 
 	}
 	
 	public String create() {
 		operation = "create";
-		moduleTitle = "UsuÃ¡rios - Novo";
+		moduleTitle = "Usuários - Novo";
 		initializeEntity();
 		return "/pages/" + entity.getClass().getSimpleName() + "/form" + entity.getClass().getSimpleName();
 	}
@@ -77,10 +77,10 @@ public class UsuarioController extends AbstractController<Usuario> {
 		try {
 			if (entity.getId() == null) {
 				getService().cadastrar(entity, novaSenha, confirmaSenha);
-				infoMessage("UsuÃ¡rio cadastrado com sucesso!");
+				infoMessage("Usuário cadastrado com sucesso!");
 			} else {
 				getService().alterar(entity, novaSenha, confirmaSenha);
-				infoMessage("UsuÃ¡rio alterado com sucesso!");
+				infoMessage("Usuário alterado com sucesso!");
 			}			
 			initializeEntity();
 			return list();
@@ -94,7 +94,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 		try {
 			entity = getService().buscarPorId(idEntity);
 			operation = "edit";
-			moduleTitle = "UsuÃ¡rios - Editar";
+			moduleTitle = "Usuários - Editar";
 			return "/pages/" + entity.getClass().getSimpleName() + "/form" + entity.getClass().getSimpleName(); 
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
