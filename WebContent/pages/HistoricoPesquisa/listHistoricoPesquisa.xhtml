@@ -32,28 +32,28 @@
 			<f:facet name="header">
 				<h:outputText value="Nome" />
 			</f:facet>
-			<h:outputText value="#{item.nome}" />
+			<h:outputText value="#{empty item.nome ? 'Todos' : item.nome}" />
 		</p:column>
 
 		<p:column style="text-align: center; vertical-align: middle;">
 			<f:facet name="header">
 				<h:outputText value="Modelo" />
 			</f:facet>
-			<h:outputText value="#{item.modelo}" />
+			<h:outputText value="#{empty item.modelo ? 'Todos' : item.modelo}" />
 		</p:column>
 
 		<p:column style="text-align: center; vertical-align: middle;">
 			<f:facet name="header">
 				<h:outputText value="Fabricante" />
 			</f:facet>
-			<h:outputText value="#{item.fabricante}" />
+			<h:outputText value="#{empty item.fabricante ? 'Todos' : item.fabricante}" />
 		</p:column>
 
 		<p:column style="text-align: center; vertical-align: middle;">
 			<f:facet name="header">
 				<h:outputText value="Ano" />
 			</f:facet>
-			<h:outputText value="#{item.ano}"/>
+			<h:outputText value="#{empty item.ano ? 'Todos' : item.ano}"/>
 		</p:column>
 		
 		<p:column style="text-align: center; vertical-align: middle;">
