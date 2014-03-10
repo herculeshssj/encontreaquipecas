@@ -1,3 +1,47 @@
+/***
+  
+  	Copyright (c) 2013 Hércules S. S. José
+
+    Este arquivo é parte do programa EncontreAquiPeças.
+    
+
+    EncontreAquiPeças é um software livre; você pode redistribui-lo e/ou 
+
+    modificá-lo dentro dos termos da Licença Pública Geral Menor GNU como 
+
+    publicada pela Fundação do Software Livre (FSF); na versão 2.1 da 
+
+    Licença.
+    
+
+    Este programa é distribuído na esperança que possa ser útil, 
+
+    mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÂO a 
+    
+    qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública 
+    
+    Geral Menor GNU em português para maiores detalhes.
+    
+
+    Você deve ter recebido uma cópia da Licença Pública Geral Menor GNU sob o 
+
+    nome de "LICENSE.TXT" junto com este programa, se não, acesse o site HSlife
+    
+    no endereco www.hslife.com.br ou escreva para a Fundação do Software 
+    
+    Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA.
+    
+
+    Para mais informações sobre o programa EncontreAquiPeças e seu autor acesse o 
+
+    endereço www.hslife.com.br, pelo e-mail contato@hslife.com.br ou escreva para 
+
+    Hércules S. S. José, Av. Ministro Lafaeyte de Andrade, 1683 - Bl. 3 Apt 404, 
+
+    Marco II - Nova Iguaçu, RJ, Brasil.
+  
+*/
+
 package br.com.hslife.encontreaquipecas.controller;
 
 import java.util.ArrayList;
@@ -86,7 +130,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 					areaInteresseAnterior = loja.getAreaInteresse();
 					mudouAreaInteresse = false;
 				} else {
-					errorMessage("Op��o inv�lida!");
+					errorMessage("Op��o inv�lida!");
 				}
 			} catch (BusinessException be) {
 				errorMessage(be.getMessage());
@@ -120,7 +164,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 				areaInteresseAnterior = loja.getAreaInteresse();
 				mudouAreaInteresse = false;
 			} else {
-				errorMessage("Op��o inv�lida!");
+				errorMessage("Op��o inv�lida!");
 				return "";
 			}
 			return "/pages/Cadastro/formCadastro"; 
@@ -149,7 +193,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 				getService().atualizarCadastro(consumidor);
 				infoMessage("Dados atualizados com sucesso!");
 			} else {
-				errorMessage("Op��o inv�lida!");
+				errorMessage("Op��o inv�lida!");
 			}			
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
@@ -199,7 +243,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 		            .comSacado(sacado)		            
 		            .comValorBoleto(valorBoleto)  
 		            .comNumeroDoDocumento("1234")  
-		            .comInstrucoes("Pagamento do servi�o prestado")  
+		            .comInstrucoes("Pagamento do servi�o prestado")  
 		            .comLocaisDePagamento("EncontreAquiPecas");  
 
 		        GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);  
@@ -233,7 +277,7 @@ public class AtualizarCadastroController extends AbstractController<Usuario>{
 	public List<SelectItem> getListaAreaInteresse() {
 		List<SelectItem> listaSelectItem = new ArrayList<SelectItem>();
 		listaSelectItem.add(new SelectItem(AreaInteresse.BANNER, "Banner"));
-		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "Divulga��o de produto"));
+		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "Divulga��o de produto"));
 		return listaSelectItem;
 	}
 	

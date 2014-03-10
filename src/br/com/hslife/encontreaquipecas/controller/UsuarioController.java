@@ -1,3 +1,47 @@
+/***
+  
+  	Copyright (c) 2013 Hércules S. S. José
+
+    Este arquivo é parte do programa EncontreAquiPeças.
+    
+
+    EncontreAquiPeças é um software livre; você pode redistribui-lo e/ou 
+
+    modificá-lo dentro dos termos da Licença Pública Geral Menor GNU como 
+
+    publicada pela Fundação do Software Livre (FSF); na versão 2.1 da 
+
+    Licença.
+    
+
+    Este programa é distribuído na esperança que possa ser útil, 
+
+    mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÂO a 
+    
+    qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública 
+    
+    Geral Menor GNU em português para maiores detalhes.
+    
+
+    Você deve ter recebido uma cópia da Licença Pública Geral Menor GNU sob o 
+
+    nome de "LICENSE.TXT" junto com este programa, se não, acesse o site HSlife
+    
+    no endereco www.hslife.com.br ou escreva para a Fundação do Software 
+    
+    Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA.
+    
+
+    Para mais informações sobre o programa EncontreAquiPeças e seu autor acesse o 
+
+    endereço www.hslife.com.br, pelo e-mail contato@hslife.com.br ou escreva para 
+
+    Hércules S. S. José, Av. Ministro Lafaeyte de Andrade, 1683 - Bl. 3 Apt 404, 
+
+    Marco II - Nova Iguaçu, RJ, Brasil.
+  
+*/
+
 package br.com.hslife.encontreaquipecas.controller;
 
 import java.util.ArrayList;
@@ -34,7 +78,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 
 	@Override
 	public String startUp() {
-		moduleTitle = "Usu�rios";
+		moduleTitle = "Usu�rios";
 		return super.startUp();
 	}
 	
@@ -62,13 +106,13 @@ public class UsuarioController extends AbstractController<Usuario> {
 	
 	public String list() {
 		operation = "list";
-		moduleTitle = "Usu�rios";
+		moduleTitle = "Usu�rios";
 		return "/pages/" + entity.getClass().getSimpleName() + "/list" + entity.getClass().getSimpleName(); 
 	}
 	
 	public String create() {
 		operation = "create";
-		moduleTitle = "Usu�rios - Novo";
+		moduleTitle = "Usu�rios - Novo";
 		initializeEntity();
 		return "/pages/" + entity.getClass().getSimpleName() + "/form" + entity.getClass().getSimpleName();
 	}
@@ -77,10 +121,10 @@ public class UsuarioController extends AbstractController<Usuario> {
 		try {
 			if (entity.getId() == null) {
 				getService().cadastrar(entity, novaSenha, confirmaSenha);
-				infoMessage("Usu�rio cadastrado com sucesso!");
+				infoMessage("Usu�rio cadastrado com sucesso!");
 			} else {
 				getService().alterar(entity, novaSenha, confirmaSenha);
-				infoMessage("Usu�rio alterado com sucesso!");
+				infoMessage("Usu�rio alterado com sucesso!");
 			}			
 			initializeEntity();
 			return list();
@@ -94,7 +138,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 		try {
 			entity = getService().buscarPorId(idEntity);
 			operation = "edit";
-			moduleTitle = "Usu�rios - Editar";
+			moduleTitle = "Usu�rios - Editar";
 			return "/pages/" + entity.getClass().getSimpleName() + "/form" + entity.getClass().getSimpleName(); 
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());

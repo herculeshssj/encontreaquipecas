@@ -1,11 +1,11 @@
 /***
   
-  	Copyright (c) 2012, 2013, 2014 Hércules S. S. José
+  	Copyright (c) 2013 Hércules S. S. José
 
-    Este arquivo é parte do programa Orçamento Doméstico.
+    Este arquivo é parte do programa EncontreAquiPeças.
     
 
-    Orçamento Doméstico é um software livre; você pode redistribui-lo e/ou 
+    EncontreAquiPeças é um software livre; você pode redistribui-lo e/ou 
 
     modificá-lo dentro dos termos da Licença Pública Geral Menor GNU como 
 
@@ -32,7 +32,7 @@
     Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA.
     
 
-    Para mais informações sobre o programa Orçamento Doméstico e seu autor acesse o 
+    Para mais informações sobre o programa EncontreAquiPeças e seu autor acesse o 
 
     endereço www.hslife.com.br, pelo e-mail contato@hslife.com.br ou escreva para 
 
@@ -40,7 +40,7 @@
 
     Marco II - Nova Iguaçu, RJ, Brasil.
   
- ***/
+*/
 
 package br.com.hslife.encontreaquipecas.entity;
 

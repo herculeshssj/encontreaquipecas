@@ -1,3 +1,47 @@
+/***
+  
+  	Copyright (c) 2013 Hércules S. S. José
+
+    Este arquivo é parte do programa EncontreAquiPeças.
+    
+
+    EncontreAquiPeças é um software livre; você pode redistribui-lo e/ou 
+
+    modificá-lo dentro dos termos da Licença Pública Geral Menor GNU como 
+
+    publicada pela Fundação do Software Livre (FSF); na versão 2.1 da 
+
+    Licença.
+    
+
+    Este programa é distribuído na esperança que possa ser útil, 
+
+    mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÂO a 
+    
+    qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública 
+    
+    Geral Menor GNU em português para maiores detalhes.
+    
+
+    Você deve ter recebido uma cópia da Licença Pública Geral Menor GNU sob o 
+
+    nome de "LICENSE.TXT" junto com este programa, se não, acesse o site HSlife
+    
+    no endereco www.hslife.com.br ou escreva para a Fundação do Software 
+    
+    Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA.
+    
+
+    Para mais informações sobre o programa EncontreAquiPeças e seu autor acesse o 
+
+    endereço www.hslife.com.br, pelo e-mail contato@hslife.com.br ou escreva para 
+
+    Hércules S. S. José, Av. Ministro Lafaeyte de Andrade, 1683 - Bl. 3 Apt 404, 
+
+    Marco II - Nova Iguaçu, RJ, Brasil.
+  
+*/
+
 package br.com.hslife.encontreaquipecas.controller;
 
 import java.util.ArrayList;
@@ -80,7 +124,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 			telefone = new Telefone();
 			usuario = new Usuario();
 		} else {
-			errorMessage("Op��o inv�lida!");
+			errorMessage("Op��o inv�lida!");
 			return "";
 		}
 		return "efetuarRegistroPasso2";
@@ -107,7 +151,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 				consumidor.validate();
 				return "efetuarRegistroPasso3";
 			} else {
-				errorMessage("Op��o inv�lida!");
+				errorMessage("Op��o inv�lida!");
 			}
 		} catch (BusinessException be) {
 			errorMessage(be.getMessage());
@@ -122,7 +166,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 			} else if (perfilUsuario.equals("CONSUMIDOR")) {
 				getService().efetuarRegistro(consumidor);
 			} else {
-				errorMessage("Op��o inv�lida!");
+				errorMessage("Op��o inv�lida!");
 			}
 			return "efetuarRegistroPasso4";
 		} catch (BusinessException be) {
@@ -150,7 +194,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 			    		dataAtual.get(Calendar.YEAR));  
 
 			Emissor emissor = Emissor.novoEmissor()  
-		            .comCedente("EncontreAquiPe�as")  
+		            .comCedente("EncontreAquiPe�as")  
 		            .comAgencia(1824).comDigitoAgencia('4')  
 		            .comContaCorrente(76000)  
 		            .comNumeroConvenio(1207113)  
@@ -182,8 +226,8 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 		            .comSacado(sacado)		            
 		            .comValorBoleto(valorBoleto)  
 		            .comNumeroDoDocumento("1234")  
-		            .comInstrucoes("Pagamento do servi�o prestado")  
-		            .comLocaisDePagamento("EncontreAquiPe�as");  
+		            .comInstrucoes("Pagamento do servi�o prestado")  
+		            .comLocaisDePagamento("EncontreAquiPe�as");  
 
 		        GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);  
 
@@ -215,7 +259,7 @@ public class EfetuarRegistroController extends AbstractController<Usuario>{
 	public List<SelectItem> getListaAreaInteresse() {
 		List<SelectItem> listaSelectItem = new ArrayList<SelectItem>();
 		listaSelectItem.add(new SelectItem(AreaInteresse.BANNER, "Banner"));
-		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "Divulga��o de produto"));
+		listaSelectItem.add(new SelectItem(AreaInteresse.PRODUTO, "Divulga��o de produto"));
 		return listaSelectItem;
 	}
 	
