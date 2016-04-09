@@ -23,3 +23,5 @@ create database encontreaquipecas;
 create user 'encontreaqui'@'localhost' identified by 'p3c4s1@3';
 grant all privileges on encontreaquipecas.* to 'encontreaqui'@'localhost' with grant option;
 ```
+
+Na pasta **src** executar o arquivo **script-db.sql** para criar as tabelas da base.

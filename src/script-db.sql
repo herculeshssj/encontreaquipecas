@@ -189,4 +189,4 @@ create table historicopesquisa (
 
 alter table historicopesquisa add constraint fk_consumidor_historicopesquisa foreign key consumidor (idConsumidor) references consumidor (id);
 
-insert into usuario (ativo, dataCriacao, login, nome, senha, tipoUsuario, email) values (true, '2013-01-01', 'admin', 'Administrador do Sistema', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'ROLE_ADMIN', 'contato@hslife.com.br');
+insert into usuario (ativo, dataCriacao, login, nome, senha, tipoUsuario, email) values (true, '2013-01-01', 'admin', 'Administrador do Sistema', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'ROLE_ADMIN', 'contato@hslife.com.br'); -- senha: admin
